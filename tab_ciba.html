@@ -14,12 +14,14 @@
 	h1,h2,h3,h4,h5,h6 {font-size:100%;font-weight:normal;}
 
 	.main {width:755px; margin:20px auto;}
-	.tab {border-bottom:1px solid #c8c8c8;}
-	.tab ul li{list-style:none; height:26px; width:69px; line-height:26px; float:left; background:transparent url(images/sprite_tab.jpg) no-repeat scroll -90px 0; color:#999; cursor:pointer; margin-right:3px; border:none; margin-bottom:-1px;}
+	.tab {/*border-bottom:1px solid #c8c8c8;*/ background:transparent url(images/height_one.gif) repeat-x scroll 0 0;}
+	.tab ul li{list-style:none; height:26px; width:69px; line-height:26px; float:left; background:transparent url(images/sprite_tab.jpg) no-repeat scroll -90px 0; color:#999; cursor:pointer; margin-right:3px; border:none; /*margin-bottom:-1px;*/}
 	.tab ul li.no {background-position:0 0; color:#666;}
 	.tab ul li:after { clear:both; content:"\0020"; display:block; visibility:hidden; height:0;}
 	.tabCont {width:753px; border-color:#c8c8c8; border-width:1px; border-style:none solid solid solid; text-align:left; height:300px; overflow:visible;}
-	div[class].tabCont {min-height:300px; height:auto;}
+	div[class="tabCont"] {min-height:300px; height:auto;}
+	.tab .bottomLine {background:none; clear:both; height:1px; position:absolute; width:753px; left:0; background-color:#c8c8c8;}
+
 
 	.tabCont .info {padding:20px;}
 
@@ -29,7 +31,7 @@
 	.none {display:none;}
 
 	.mainCont {margin-top:30px; border:1px solid #c8c8c8; height:200px; width:753px; overflow:visible;}
-	div[class].mainCont {min-height:200px; height:auto;}
+	div[class="mainCont"] {/*min-height:200px;*/ height:auto;}
 
 	.mainCont .tit {background:transparent url(images/content_bg2.jpg) repeat-x scroll 0 0; height:30px; line-height:30px; cursor:pointer; border-color:#F2F6FB #F2F6FB #EFEFEF; border-style:solid; border-width:1px; color:#333; width:750px; margin:2px auto;}
 	.mainCont .tit h3{text-align:left; padding-left:5px; font-size:14px; font-weight:bold; float:left;}
@@ -63,12 +65,12 @@
 
 
 		<div class="mainCont">
-			<div class="tit cls">
+			<div class="tit cls" id="handler">
 				<h3>网络例句</h3>
-				<div class="up down"></div>
+				<div class="up" id="iconEl"></div>
 				<span>以下结果来自互联网</span>
 			</div>
-			<div class="ex_cont">
+			<div class="ex_cont" id="handlerCont">
 				<p>这里是内容...</p>
 				<p>这里是内容...</p>
 				<p>这里是内容...</p>
@@ -90,9 +92,26 @@
 		return typeof id === "string" ? document.getElementById(id) : id;
 	}
 
+	$("handler").onclick = function() {
+		var elem = $("handlerCont"),
+			icon = $("iconEl");
+
+		if(elem.style.display != "none") {
+			elem.style.display = "none";
+			addClass(icon, "down");
+		} else {
+			elem.style.display = "block";
+			replaceCss(icon, "down", "");
+		}
+	}
+
 	function replaceCss(elem, className_1, className_2) {
 		className_2 = className_2 || "";
-		elem.className = elem.className.replace(new RegExp(className_1), "");
+		elem.className = elem.className.replace(new RegExp(className_1), className_2);
+	}
+
+	function addClass(elem, className) {
+		elem.className = elem.className.replace(/(^[\s\t\xa0\u3000]+)|([\s\t\xa0\u3000]+$)/, "") + " " + className;//去除两端空格后再加上" "
 	}
 
 	function toggle(elems, flag) {
@@ -110,6 +129,13 @@
 	function tabChange(tabId, contId) {
 		var lis = $(tabId).getElementsByTagName("li"),
 			elems = $(contId).childNodes;
+
+		for(var i=0; i<elems.length; i++) {
+			if(elems[i].nodeType !== 1) {//Object.prototype.toString.apply(elems) ---> [object NodeList]
+				elems.item(i).parentNode.removeChild(elems.item(i));//移除空白文本
+				i -= 1;
+			}
+		}
 
 		var currentIndex = 0;
 
