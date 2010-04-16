@@ -1,5 +1,11 @@
 svn 访问地址：http://cahty.googlecode.com/svn/trunk/
 
+脊椎视频地址：
+
+http://www.imgo.tv/watch_tv.aspx?TypeId=357&ClipId=31905&tid=357&cid=31905&fid=41497&OTypeId=357&styleId=1&fstlvlId=1#top
+
+http://www.imgo.tv/watch_tv.aspx?TypeId=357&ClipId=32170&tid=357&cid=32170&fid=41763&OTypeId=357&styleId=1&fstlvlId=1#top
+
 
 块级元素：(block element)：
 1、address    地址
