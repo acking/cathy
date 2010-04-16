@@ -1,1 +1,59 @@
 svn 访问地址：http://cahty.googlecode.com/svn/trunk/
+
+
+块级元素：(block element)：
+1、address    地址
+2、blockquote 块引用 
+3、center
+4、dir
+5、div
+6、dl
+7、fieldset
+8、form
+9、h1、h2、h3、h4、h5、h6、hr
+10、isindex input prompt
+11、menu
+12、noframes
+13、noscript
+14、ol
+15、p
+16、pre
+17、table
+18、ul
+
+
+内联元素：(inline element)
+* a - 锚点
+* abbr - 缩写
+* acronym - 首字
+* b - 粗体(不推荐)
+* bdo - bidi override
+* big - 大字体
+* br - 换行
+* cite - 引用
+* code - 计算机代码(在引用源码的时候需要)
+* dfn - 定义字段
+* em - 强调
+* font - 字体设定(不推荐)
+* i - 斜体
+* img - 图片
+* input - 输入框
+* kbd - 定义键盘文本
+* label - 表格标签
+* q - 短引用
+* s - 中划线(不推荐)
+* samp - 定义范例计算机代码
+* select - 项目选择
+* small - 小字体文本
+* span - 常用内联容器，定义文本内区块
+* strike - 中划线
+* strong - 粗体强调
+* sub - 下标
+* sup - 上标
+* textarea - 多行文本输入框
+* tt - 电传文本
+* u - 下划线
+* var - 定义变量
+
+
+
