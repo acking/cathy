@@ -1,38 +1,30 @@
-<!doctype html>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <title>浮动元素居中显示</title>
-  <meta name="generator" content="editplus" />
-  <meta name="author" content="" />
-  <meta name="keywords" content="" />
-  <meta name="description" content="" />
-  <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
-  <style type="text/css">
-* {margin:0; padding:0;}
-li {list-style:none;}
+<head>
+<title>受词霸 Tab切换</title>
+<meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+<meta name="generator" content="editplus" />
+<meta name="author" content="" />
+<meta name="keywords" content="" />
+<meta name="description" content="" />
 
-#wrapper {background-color:#406c99; width:750px; margin:40px; text-align:center; overflow:hidden; height:60px;}
-#wrapper ul {left:50%; position:relative; background-color:#a9ce78; zoom:1; float:left;}
-#wrapper ul li {float:left; width:40px; height:40px; background-color:#66c7f7; margin:10px; text-align:center; padding:0 10px; position:relative; right:50%; overflow:hidden;}
+<style type="text/css">
+	ul, li {margin:0; padding:0; list-style:none;}
 
-/*
-#wrapper ul:after {content:""; clear:both; overflow:hidden; height:0; line-height:0; display:block;}
-
-.clear{clear:both;height:0;line-height:0;margin:0;padding:0;border:0;overflow:hidden;}
-*/
-  </style>
- </head>
-
- <body>
-
+	#wrapper {width:800px; background-color:#eee; height:80px;}
+	#wrapper ul {float:left; position:relative; left:50%;}
+	#wrapper ul li {float:left; position:relative; right:50%; margin:10px; padding:0 10px; border:solid 1px #000; line-height:60px;}
+</style>
+</head>
+<body>
+<h1>跨浏览器的浮动元素居中显示</h1>
 <div id="wrapper">
 	<ul>
-		<li>1</li>
-		<li>2</li>
-		<li>3</li>
-		<li>4</li>
+		<li>列表一,我是浮动的</li>
+		<li>列表二</li>
+		<li>列表三</li>
 	</ul>
 </div>
 
- </body>
+</body>
 </html>
