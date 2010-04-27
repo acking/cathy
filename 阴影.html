@@ -16,7 +16,7 @@
 	.png_shadow {background:transparent url(images/feed_shadow.png) no-repeat scroll right bottom; margin-left:50px; float:left;}
 	
 	*html .png_shadow {background-image:url(images/feed_shadow.gif);}
-	/**html .png_shadow {filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(sizingMethod=crop; src='images/feed_shadow.png'); background-image: none; overflow:hidden;}	*/
+	/**html .png_shadow {filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(sizingMethod=scale; src='images/feed_shadow.png'); background-image: none; overflow:hidden;}	*/
 
 	.cont {border:1px solid #8996a5;width:200px; height:300px; padding:10px 5px 5px 10px; background:#fcfcfc; position:relative; top:-8px; left:-8px;}
 
@@ -39,7 +39,7 @@
 
 
 	<div class="png_shadow">
-		<div class="cont">
+		<div class="cont" style="height:800px;">
 			<div style="color:#3b3b3b; font-size:14px; font-weight:700; float:left;">显示</div>
 			<div style="color:#3165c6; font-weight:700; float:right; margin-right:5px;">10/10</div>
 		</div>
