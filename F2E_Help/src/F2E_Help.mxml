@@ -69,8 +69,11 @@
 			import mx.collections.ICollectionView;
 			import mx.events.ListEvent;
 			
-			private function tree_itemClick2(event:ListEvent):void {
-					
+			private function tree_itemClick2(evt:ListEvent):void {
+				var item:Object = Tree(evt.currentTarget).selectedItem;
+				if (tree2.dataDescriptor.isBranch(item)) {
+					tree2.expandItem(item, !tree2.isItemOpen(item), true);
+				}
 			}
 			
 			private function tree_labelFunc2(item:XML):String {
