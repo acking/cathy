@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="utf-8"?>
+<mx:Application xmlns:mx="http://www.adobe.com/2006/mxml" layout="absolute" minWidth="300" minHeight="100" viewSourceURL="srcview/index.html" width="100%" height="100%" creationComplete="inited();">
+	
+	<mx:XML id="myTree">
+		<root>
+			<folder label="帮助文档">
+				<folder label="编程语言">
+					<item label="Javascript" />
+					<item label="Python" />
+					<item label="Php" />
+					<item label="Java" />
+					<item label="actionScript" />
+				</folder>
+				<item label="思维导图" />
+				<item label="原型制作" />
+			</folder>
+			<folder label="Javascript">
+				<folder label="无忧脚本">
+					<item label="月影精华帖" />
+					<item label="Winter精华帖" />
+					<item label="客服果果精华帖" />
+				</folder>
+				<folder label="jQuery">
+					<item label="CssRain.cn" />
+				</folder>
+				<folder label="YUI">
+					<item label="YUI 2.5" />
+					<item label="YUI 2.6" />
+					<item label="YUI 2.7" />
+					<item label="YUI 3.0" />
+				</folder>
+			</folder>
+			<folder label="CSS">
+				<item label="IE6's Bug汇总" />
+				<item label="关于HasLayout" />
+			</folder>
+			<folder label="(X)HTML">
+				<item label="语义" />
+				<item label="结构" />
+				<item label="样式" />
+				<item label="九宫格" />
+			</folder>
+			<folder label="ActionScript">
+				<item label="as2.0" />
+				<item label="as3.0" />
+				<item label="flex" />
+				<item label="flash cs" />
+			</folder>
+			<folder label="Python">
+				<folder label="Python界面编程">
+					<item label="wxPython" />
+					<item label="PyQt4" />
+				</folder>
+				<folder label="Python_Web开发">
+					<item label="Django" />
+					<item label="web.py" />
+					<item label="Zope" />
+				</folder>
+			</folder>
+			<folder label="服务器">
+				<item label="Nginx" />
+				<item label="Apache" />
+			</folder>
+		</root>
+	</mx:XML>
+	
+	<mx:Script>
+		<![CDATA[
+			import mx.collections.ICollectionView;
+			import mx.events.ListEvent;
+			
+			private function tree_itemClick2(event:ListEvent):void {
+					
+			}
+			
+			private function tree_labelFunc2(item:XML):String {
+				var children:ICollectionView;
+				var suffix:String = "";
+				if (tree2.dataDescriptor.isBranch(item)) {
+					children = tree2.dataDescriptor.getChildren(item);
+					suffix = " (" + children.length + ")";
+				}
+				return item[tree2.labelField] + suffix;
+			}
+			
+			private function inited():void {
+				tree2.dataProvider = myTree;
+				tree2.labelField = "@label";
+			}
+		]]>
+	</mx:Script>
+	
+	<mx:VBox width="100%" height="100%">
+		
+		<mx:ApplicationControlBar height="40" width="100%">
+			<mx:Label text="F2E--帮助手册V1.0(前端开发工程师帮助手册)" fontSize="14" fontWeight="bold"/>			
+		</mx:ApplicationControlBar>
+		
+		<mx:HDividedBox width="100%" height="100%">
+			<mx:HBox backgroundColor="#FFFFFF" width="200" height="100%">
+				<mx:Tree id="tree2" width="100%" height="100%" showRoot="false" rowCount="6" labelFunction="tree_labelFunc2" itemClick="tree_itemClick2(event)"></mx:Tree>
+			</mx:HBox>
+			<mx:HBox backgroundColor="#FFFFFF" width="100%" height="100%" />
+		</mx:HDividedBox>
+		
+		<mx:ApplicationControlBar height="30" width="100%">
+			<mx:Text text="Copyright © 2009-2010 女儿国-9917.Powered By Meteoric_cry" width="100%" textAlign="right" paddingRight="20"/>
+		</mx:ApplicationControlBar>
+	</mx:VBox>	
+</mx:Application>
