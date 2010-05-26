@@ -323,8 +323,8 @@ Fx.DOM = {
 			el.style.opacity = value;
 		} else {
 			prop = this.toCamelCase(prop);
-			if(prop === "height" || prop === "width") {
-				value = Math.max(0, value);
+			if(prop === "height" || prop === "width") {//避免出现负值
+				value = Math.max(0, parseInt(value, 10));
 			}
 			el.style[prop] = value;
 		}
