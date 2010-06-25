@@ -1,0 +1,119 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+		<title>LightBox</title>
+	</head>
+	<body>
+		<script type="text/javascript">
+			FWKAjax = {};
+			/*FWKAjax作用范围*/
+			FWKAjax.getXHR = function() {
+				var xhr = null;
+				try {
+					return (xhr = new XMLHttpRequest());
+				} catch(ex) {
+					for(var i = 0,a = ['MSXML3','MSXML2','Microsoft'];i<a.length;i++) {
+						try {
+							xhr = new ActiveXObject(a[i]+'.XMLHTTP');
+							break;
+						} catch(ex) {}
+					}
+				}
+				return xhr;
+			}
+			
+			/**
+			 * 异步的ajax请求
+			 * @param {Object} url
+			 * @param {Object} json
+			 */
+			FWKAjax.request = function(url,json) {
+				var xhr = this.getXHR();
+				if(!xhr) {
+					throw new Error("cant't initialize xhr instance.");
+				}
+				
+				var options = {};
+				options.method    =  (json.method || 'get').toLowerCase();
+				options.asyn 	  =  true;
+				options.onSuccess =  json.onSuccess || function() {};
+				options.onFailure =  json.onFailure || function() {new Image().src="";};
+				
+				options.postData = json.postData || null;
+				
+				xhr.open(options.method,url,options.asyn);
+				
+				if("post" == options.method.toLowerCase()) {
+					xhr.setRequestHeader("Content-Type","application/x-www-form-urllencoded");
+				}
+				
+				xhr.onreadystatechange = function() {
+					if(xhr.readyState == 4) {
+						if(xhr.status == 0 || xhr.status == 200) {
+							var rText = xhr.responseText;
+							xhr = FWKAjax.loadXML(rText);
+							options.onSuccess(xhr);
+						} else {
+							options.onFailure(xhr);
+						}
+					}
+				}
+				xhr.send(options.postData);
+			}
+			
+			
+			FWKAjax.loadXML = function(xmlString) {
+				try {
+					XMLDoc = new ActiveXObject("Microsoft.XMLDOM");
+				} catch(e) {
+					try {
+						XMLDoc = document.implementation.createDocument("text/xml", "", null); 
+					}catch(e){
+						return null;
+					}
+				}
+				
+				if(window.ActiveXObject){
+					var flag = XMLDoc.loadXML(xmlString);
+					if(flag){
+						return XMLDoc;
+					}
+					else{
+						return null;
+					}
+				}
+				else{
+					try
+					{
+						var childNodes = XMLDoc.childNodes;
+						for (var i = childNodes.length - 1; i >= 0; i--)
+							XMLDoc.removeChild(childNodes[i]);
+		
+						var dp = new DOMParser();
+						var newDOM = dp.parseFromString(xmlString, "text/xml");
+						var newElt = XMLDoc.importNode(newDOM.documentElement, true);
+						XMLDoc.appendChild(newElt);
+						return XMLDoc;
+					}
+					catch (ex)
+					{
+						return null;
+					}
+				}
+			}
+			
+			var ajax = FWKAjax.request("/Test/data/one.xml",{
+				method: "get",
+				onSuccess: function(_xml){
+					alert(_xml.xml);
+				},
+				onFailure: function(_xml){
+					alert("faile");
+				},
+				postData:"abc"
+			});
+
+		</script>
+	</body>
+</html>
