@@ -1,7 +1,7 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
  <head>
-  <title> new document </title>
+  <title>PopMenu</title>
   <meta name="generator" content="editplus" />
   <meta name="author" content="" />
   <meta name="keywords" content="" />
@@ -9,27 +9,58 @@
   <meta http-equiv="Content-Type" content='text/html;charset=utf-8' />
   <style type="text/css">
 	* {margin:0; padding:0;}
-	.pop_menu {position:absolute; top:0; left:0; z-index:3; width:160px; font:12px arial, simsun, helvetica, sans-serif;}
-	.pop_menu_shadow {border-width:2px; border-style:none solid solid none; border-color:#B0B0B0;}
-	.pop_menu_ul {list-style:none; margin:0; padding:2px; border:1px solid #333333; background-color:#FFFFFF;}
+	body {background-color:#FFFFFF;}
+
+	.pop_menu{position:absolute;top:0;left:0;z-index:10001;width:170px;font-size:12px;font-family:Arial, Simsun, "Arial Unicode MS", Mingliu, Helvetica;}
+	.pop_menu_shadow{border-width:2px;border-style:none solid solid none;border-color:#B0B0B0;}
+	.pop_menu_ul{list-style:none;margin:0;padding:2px;border:1px solid #333333;background-color:#FFFFFF;}
 	.pop_menu_ul li,.pop_menu_ul li a{display:block;}
-	.pop_menu_a:visited, .pop_menu_a:link {display:block; height:16px;  padding:3px 0 0 20px; color:#000000; white-space:nowrap; text-decoration:none;}
-	.pop_menu_a:hover {background-color:#62B0FF;}
+	.pop_menu {background-color:#FFFFFF;}
+	.pop_menu_a:visited, .pop_menu_a:link{display:block;height:16px;padding:3px 0 0 20px;color:#000000;white-space:nowrap;text-decoration:none;}
+	.pop_menu_a:hover{background-color:#62B0FF;}
+	.pop_menu_separator{border-top:1px solid #999;height:1px;overflow:hidden;margin:2px 0 1px 0;}
+
+
+	.popup_menu {position:absolute; left:30px; top:100px; z-index:1; font-size:12px; text-align:left; width:170px;}
+	.popup_menu .bd {border:1px solid #808080; position:static; z-index:1; zoom:1; background-color:#FFFFFF;}
+	.popup_menu_ul {list-style-type:none; padding:2px 1px;}
+
+	.popup_menu_item, .popup_menu_a {display:block;}
+	.popup_menu_a {text-decoration:none; color:#000000; padding:0 20px; display:block; white-space:nowrap; background:#FFFFFF; height:20px; line-height:20px;}	
+	.popup_menu_a:hover {background-color:#62B0FF;}
+	.popup_menu_a:visited, .popup_menu_a:link {display:block;padding:3px 0 0 20px;color:#000000;white-space:nowrap;text-decoration:none;}
+
+	.popup_menu_shadow {background-color:#000000; opacity:0.12; filter:alpha(opacity=12); bottom:-3px; left:3px; right:-3px; top:3px; z-index:-1; position:absolute; width:100%; height:145px;}
   </style>
  </head>
 
  <body>
-  <div class='pop_menu' style='left:300px; top:50px;'>
-	<div class='pop_menu_shadow'>
-		<ul class='pop_menu_ul'>
-			<li><a href="javascript:;" class='pop_menu_a'>移动到顶层</a></li>
-			<li><a href="javascript:;" class='pop_menu_a'>移动到上一层</a></li>
-			<li><a href="javascript:;" class='pop_menu_a'>移动到下一层</a></li>
-			<li><a href="javascript:;" class='pop_menu_a'>移动到底层</a></li>
-			<li><a href="javascript:;" class='pop_menu_a'>还原默认位置</a></li>
-			<li><a href="javascript:;" class='pop_menu_a'>切换导航纵/横向风格</a></li>
-		</ul>
-	</div>	
-  </div>
+	 <div class='pop_menu' style='left:300px; top:50px;'>
+		<div class='pop_menu_shadow'>
+			<ul class='pop_menu_ul'>
+				<li><a href="javascript:;" class='pop_menu_a'>移动到顶层</a></li>
+				<li><a href="javascript:;" class='pop_menu_a'>移动到上一层</a></li>
+				<li><a href="javascript:;" class='pop_menu_a'>移动到下一层</a></li>
+				<li><a href="javascript:;" class='pop_menu_a'>移动到底层</a></li>
+				<li><a href="javascript:;" class='pop_menu_a'>还原默认位置</a></li>
+				<li><a href="javascript:;" class='pop_menu_a'>切换导航纵/横向风格</a></li>
+			</ul>
+		</div>	
+	 </div>
+
+	<div class="popup_menu" style="left:300px; top:300px;">
+		<div class="bd">
+			<ul class="popup_menu_ul">
+				<li class="popup_menu_item"><a href="javascript:;" class="popup_menu_a">移动到顶层</a></li>
+				<li class="popup_menu_item"><a href="javascript:;" class="popup_menu_a">移动到上一层</a></li>
+				<li class="popup_menu_item"><a href="javascript:;" class="popup_menu_a">移动到下一层</a></li>
+				<li class="popup_menu_item"><a href="javascript:;" class="popup_menu_a">移动到底层</a></li>
+				<li class="popup_menu_item"><a href="javascript:;" class="popup_menu_a">还原默认位置</a></li>
+				<li class="popup_menu_item"><a href="javascript:;" class="popup_menu_a">切换导航纵/横向风格</a></li>
+			</ul>
+		</div>
+		<div class="popup_menu_shadow"></div>
+	</div>
+
  </body>
 </html>
