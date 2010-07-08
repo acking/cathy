@@ -1,2 +1,13 @@
 http://webkit.org/blog-files/leaves/index.html 落叶
 http://www.zurb.com/playground/osx-dock Mac的鱼眼
+
+
+IE模拟CSS3的阴影
+.box-shadow {
+    filter: progid:DXImageTransform.Microsoft.Shadow(color='#969696', Direction=135, Strength=5);
+    background-color: #eee;
+    -moz-box-shadow:2px 2px 5px #969696;/*firefox*/
+    -webkit-box-shadow:2px 2px 5px #969696;/*webkit*/
+    box-shadow:2px 2px 5px #969696;/*opera或ie9*/
+}
+filter: progid:DXImageTransform.Microsoft.Shadow(color=’颜色值, Direction=阴影角度（数值）,Strength=阴影半径（数值）);
