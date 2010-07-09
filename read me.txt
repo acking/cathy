@@ -63,3 +63,57 @@ http://www.imgo.tv/watch_tv.aspx?TypeId=357&ClipId=32170&tid=357&cid=32170&fid=4
 
 
 
+《精通HTML与CSS设计模式》
+容　　器		内　　容
+<html>			<head> <body>
+  <head>		<title> & (<meta>|<link>|<object>|<script>|<style>)
+  <body>		<noscript><div>
+    <noscript>		内联元素|块状元素
+    <div>		内联元素|块状元素
+      <h1>		内联元素
+      <p>		内联元素
+      <ol> 或 <ul>	<li>
+        <li>		内联元素|块状元素
+      <dl>		<dt><dd>
+        <dt>		内联元素
+        <dd>		内联元素|块状元素
+      <table>		<caption> <colgroup> <thead> <tfoot> <tbody>
+        <caption>	内联元素
+        <colgroup>	<col>
+          <col>		无
+        <thead>		<tr>
+        <tfoot>		<tr>
+          <tbody>	<tr>
+            <tr>	<th> <td>
+              <th>	内联元素|块状元素
+              <td>	内联元素|块状元素
+        <form>		内联元素|块状元素（不包括<form>）
+          <label>	内联元素（不包括<label>）
+          <input>	无
+          <textarea>	文本
+          <select>	<optgroup>|<option>
+           <optgroup>	<option>
+             <option>	文本
+          <button>	内联元素|块状元素（不包括<a>、<form>和控制按钮）
+        <address>	内联元素
+
+
+块状元素：
+1、结构化块状元素	<ol> <ul> <dl> <table> <tr> <thead> <tfoot> <tbody> <colgroup> <col>
+2、多目标块状元素	<div> <li> <dd> <td> <th> <form> <noscript>
+3、终端块状元素		<h1> <p> <dt> <caption> <address> <blockquote>
+
+内联元素：
+
+内联---语义
+1、重要		<span> <em> <strong>
+2、词组		<a> <cite> <code> <kbd> <samp> <var>
+3、单词		<acronym> <abbr> <dfn>
+4、字符		<sub> <sup>
+
+内联--排列顺序	<br> <bdo>
+
+内联块状(表现为inline-block触发了hasLayout)
+1、替代：<img> <object> <embed> <iframe>
+2、控制：<input> <textarea> <select> <button> <label>
+
