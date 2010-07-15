@@ -117,3 +117,61 @@ http://www.imgo.tv/watch_tv.aspx?TypeId=357&ClipId=32170&tid=357&cid=32170&fid=4
 1、替代：<img> <object> <embed> <iframe>
 2、控制：<input> <textarea> <select> <button> <label>
 
+
+
+
+使用额外的标签实现圆角：
+1、先看看圆角到底长啥样
+具体的长像可以看地址：http://www.moondyzone.com/class/css/page/6
+
+1px圆角需要用一层标签，可以搜索“border实现圆角”的方案
+
+2、星级打分
+以不变应万变，也就是说使用如下的结构：
+<div>     --->这里用relative
+   <b></b>  
+   <b></b>
+   <b></b>
+   <b></b>  -->b的宽度全部固定，背景图只使用一张即可
+   <b></b>
+   <div></div>  -->这里使用absolute
+</div>
+
+使用JS动态改变div的长度（它是有背景的，而且是平铺，感觉就像是打了分）
+至于移动时的效果则需要使用脚本控制其长度了
+
+3、斜角导航的问题
+<a href='javascript:;'><span></span></a>
+a是有背景的 span也是有背景的，不同的是a使用relative相对定位，span使用absolute绝对定位  使用right:负值偏移
+这样便可以利用a的:hove了
+
+4、图像失真的问题
+IE7可以使用 -ms-interpolation-mode: bicubic;而IE6则只能使用VML了
+其它浏览器没有此问题，关于VML的说明：http://www.infowe.com/vml/
+文章例子：http://www.moondyzone.com/css/595.html
+
+测试例子：img {width:300px; height:300px; -ms-interpolation-mode: bicubic;}
+v\:image{behavior: url(#default#VML);width:300px; height:300px; display:inline-block;}
+
+<img src="http://www.moondyzone.com/wp-content/uploads/2010/05/qq.gif" />
+<v:image src= "http://www.moondyzone.com/wp-content/uploads/2010/05/qq.gif"></v:image>
+
+<style>
+img {width:300px; height:300px; -ms-interpolation-mode: bicubic;}
+v\:image{behavior: url(#default#VML);width:300px; height:300px; display:inline-block;}
+</style>
+
+5、三列自适应高度
+解决方案：
+1、使用padding-bottom:32767px; margin-bottom:-32767px;
+2、多层次嵌套
+<div class='colmask'>
+   <div class='colmid'>
+       <div class='colleft'>
+           <div class='col1'></div>
+           <div class='col2'></div>
+           <div class='col3'></div>
+       </div>
+   </div>
+</div>
+这样的嵌套有点不好，主要原因是所有都使用了relative，而且使用left左移、右移来处理，感觉非常影响性能，不太建议使用
