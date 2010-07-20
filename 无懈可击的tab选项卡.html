@@ -13,8 +13,12 @@
 	/*relative 解决IE超出部分的BUG*/
 	#nav {zoom:1; width:720px; padding:10px 0 0 46px; list-style-type:none; background:#FFCB2D; margin:50px; border-bottom:1px solid #9B8748;}
 	#nav li {float:left;margin-right:10px; }
-	#nav li a {float:left; display:block; padding:4px 8px; color:#333; text-decoration:none; border:1px solid #9B8748; background-color:#F9E9A9; margin-bottom:-1px;  position:relative; border-bottom-color:transparent;}
-	#nav li a:hover,#nav li a.current {border-color: #727377; background-color:#fff; border-bottom-color:#fff;}
+	#nav li a {float:left; display:block; padding:4px 8px; color:#333; text-decoration:none; border:1px solid #9B8748; background-color:#F9E9A9; margin-bottom:-1px;  border-bottom-color:transparent;}
+	#nav li a:hover,#nav li a.current {border-color: #727377; background-color:#fff; border-bottom-color:#fff; position:relative; }
+
+	h2 {font-size:100%; font-weight:normal; border-bottom:1px solid #FFB2BF; height:22px;}
+	h2 a {float:left; padding:0 10px; margin-left:3px; height:22px; line-height:22px; color:#FFB2BF; text-decoration:none; border:1px solid #FFB2BF; border-bottom:none; margin-bottom:-1px;}
+	h2 a:hover, h2 a.current {background-color:#fff; position:relative; line-height:23px; font-weight:bold; color:#000;}
   </style>
  </head>
 
@@ -29,5 +33,12 @@
 	<li><a href="javascript:;">说  明</a></li>
 	<li><a href="javascript:;">关  于</a></li>
   </ul>
+
+<div style=''>
+  <h2>
+	<a href="javascript:;" class='current'>周人气</a>
+	<a href="javascript:;">周魅力</a>
+  </h2>
+</div>
  </body>
 </html>
