@@ -18,7 +18,7 @@
 			<input type="button" value="设置为拖放" id="abcd" style="margin-left:20px;" />
 			
 			<div style="margin-left:50%;margin-top:20px;width:500px;height:500px;border:solid 1px #3377cc;" id="outerContainer">
-				<div id ="test" style="border: solid 5px #3377cc; width:100px; height:100px;position:absolute;">
+				<div id ="test" style="border: solid 5px #3377cc; width:100px; height:100px;position:absolute; z-index:100;">
 					<div style="width:100%;height:100%;background:#3377CC">
 						<span>这里是文字</span>
 						<a href="javascript:alert(1);">这里是链接</a>
@@ -73,10 +73,10 @@
 			GD$("abcd").onclick= function() {
 				if(_dragHandler) return false;
 				_dragHandler = GD.ui.DragDrop.registerDragdropHandler("test", "test", {
-					range: [100, 100, 200, 500],
+					range: [0, 100, 200, 500],
 					x:0,
-					y:100,
-					rangeElement : [document.documentElement, [1, 1, 1, 1], 0],
+					y:0,
+					//rangeElement : [document.documentElement, [1, 1, 1, 1], 0],
 					autoScroll : true,
 					ghostSize : [50, 20],
 					ignoreTagName : 'embed'/*,
@@ -108,6 +108,6 @@
 			}
 			GD$("abcd").onclick();
 		</script>
-		
+	<div style='position:absolute; width:100%; height:100%; background-color:#000; filter:alpha(opacity=30); opacity:.3; top:0; left:0;'></div>	
 	</body>
 </html>
