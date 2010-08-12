@@ -1,0 +1,35 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <title>日历使用小记</title>
+  <meta name="generator" content="editplus" />
+  <meta name="author" content="" />
+  <meta name="keywords" content="" />
+  <meta name="description" content="" />
+  <meta http-equiv='content-type' content='text/html;charset=utf-8' />
+ </head>
+
+ <body>
+<script type="text/javascript">
+	
+//传入一个日期，得到此日期为当年的第多少周
+function getWeekDay(date) {
+	if (!date || typeof date != 'object') {
+		date = new Date();
+	}
+
+	var d1 = date;
+	var d2 = new Date(d1.getFullYear(), 0, 1);//获取那一年第一天
+	
+	var r = d1 - d2;
+	var day = Math.ceil(r/(1000*60*60*24));
+	var week = Math.ceil(r/(1000*60*60*24*7));
+	
+	return week;
+}
+
+
+document.write( getWeekDay() );
+</script>
+ </body>
+</html>
