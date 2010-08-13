@@ -30,10 +30,10 @@
 			
 			var txt:TextField = new TextField();
 			var css:StyleSheet = new StyleSheet();
-			css.parseCSS(".clipboard {font-size:12px; color:#0000ff;}");
+			css.parseCSS(".clipboard {font-size:12px; color:#333; text-decoration:underline;}");
 			
 			txt.styleSheet = css;
-			txt.htmlText = "<a href='event:#' class='clipboard'>复制到剪切板</a>";
+			txt.htmlText = "<a href='#' class='clipboard'>复制到剪贴板</a>";
 			
 			txt.addEventListener(MouseEvent.CLICK, clickHandler);
 			
@@ -41,12 +41,15 @@
 		}
 		
 		private function clickHandler(evt:Event):void {
-			var content:String = ExternalInterface.call("getData") || "";
+			var content:String = "Flash Test";
+			//var content:String = ExternalInterface.call("getData") || "";
 			System.setClipboard(content);
-			ExternalInterface.call("copySuccess");
+			trace("复制成功");
+			//ExternalInterface.call("copySuccess");
 			
-			//evt.stopImmediatePropagation();
-			//evt.preventDefault();
+			evt.stopImmediatePropagation();
+			evt.preventDefault();
+			evt.stopPropagation();
 		}
 	}
 	
