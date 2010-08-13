@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<mx:Panel xmlns:mx="http://www.adobe.com/2006/mxml" layout="absolute" width="400" height="300"
+	title="Cursor 自定义鼠标指针">
+	
+	  <mx:Script>
+        <![CDATA[
+
+            import mx.managers.CursorManager;
+
+			// 以 类 的形式引用内嵌资源。（另一种以字符串的形式引用内嵌资源的方式：@Embed('images/logo.png')）
+			[Embed(source="images/logo.png")]
+            private var customCursor:Class;  
+            
+            private function cursorChange(e:Event):void
+            {
+            	switch (radioGroup.selectedValue)
+            	{
+            		// 正常时候的鼠标指针
+            		case "Normal" :
+            			CursorManager.removeAllCursors();
+                    	break;
+                    // 繁忙时，鼠标指针的样式
+                    case "Busy" :
+                    	CursorManager.removeAllCursors();
+                    	CursorManager.setBusyCursor();
+                    	break;
+                    // 自定义鼠标指针的样式
+                    case "Custom" :
+                    	CursorManager.removeAllCursors();                    
+                    	CursorManager.setCursor(customCursor);
+                    default :
+                    	break;
+            	}
+            }
+                        
+        ]]>
+    </mx:Script>
+    
+    <mx:RadioButtonGroup id="radioGroup" change="cursorChange(event);"/>
+    <mx:RadioButton x="10" y="10" label="普通指针" value="Normal" groupName="radioGroup" selected="true"/>
+    <mx:RadioButton x="10" y="36" label="繁忙指针" value="Busy" groupName="radioGroup"/>
+    <mx:RadioButton x="10" y="62" label="自定义指针" value="Custom" groupName="radioGroup"/>
+
+</mx:Panel>

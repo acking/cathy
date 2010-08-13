@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<!--
+	演示 显示/消失（放射性渐变） 的动画效果
+-->
+
+<mx:Panel xmlns:mx="http://www.adobe.com/2006/mxml" layout="absolute" width="400" height="300"
+	title="Effect - Iris (遮罩 - 用于消失/显示对象)">
+	
+	<mx:Iris id="irisOut" duration="1000" showTarget="true" />
+	<mx:Iris id="irisIn" duration="1000" showTarget="false" />
+	
+	<mx:Image source="@Embed('images/logo.png')"
+		x="24" y="24" width="48" height="48"  
+	    visible="{chk.selected}" hideEffect="{irisOut}" showEffect="{irisIn}"
+	 />
+	 
+	 <mx:ControlBar horizontalAlign="center">
+	 	<mx:CheckBox id="chk" label="显示" selected="true" 
+	 		textRollOverColor="blue"
+	 	    textSelectedColor="red"
+	 	/>
+	 </mx:ControlBar>
+	 
+</mx:Panel>

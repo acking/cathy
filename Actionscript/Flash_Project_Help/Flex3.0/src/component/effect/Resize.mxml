@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<!--
+	演示 调整控件大小 的动画效果
+-->
+
+<mx:Panel xmlns:mx="http://www.adobe.com/2006/mxml" layout="absolute" width="400" height="300"
+	title="Effect - Resize (重设大小)">
+	
+	<mx:Script>
+		<![CDATA[
+			
+			private function smoothImage(e:Event):void
+			{
+				var bmp:Bitmap = e.target.content as Bitmap;
+				bmp.smoothing = true;
+			}
+			
+		]]>
+	</mx:Script>
+	
+	<mx:Resize id="resizeUp" target="{image}" widthTo="180" heightTo="180" />
+	<mx:Resize id="resizeDown" target="{image}" widthTo="48" heightTo="48" />
+	
+	<mx:Image id="image" source="@Embed('images/logo.png')" 
+		x="24" y="24" width="48" height="48"
+	    creationComplete="smoothImage(event)"
+	 />
+	 
+	 <mx:ControlBar horizontalAlign="center">
+	 	<mx:Button label="放大" click="resizeUp.end(); resizeUp.play();" />
+	 	<mx:Button label="缩小" click="resizeDown.end(); resizeDown.play();" />
+	 </mx:ControlBar>
+	 	 
+</mx:Panel>

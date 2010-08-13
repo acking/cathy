@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<!--
+	演示 改变控件位置 的动画效果（移动控件）
+-->
+
+<mx:Panel xmlns:mx="http://www.adobe.com/2006/mxml" layout="absolute" width="400" height="300"
+	title="Effect - Move (移动)">
+	
+	<mx:Script>
+		<![CDATA[
+			
+			private function moveImage(e:MouseEvent):void
+			{
+				var position:Point = new Point(stage.mouseX, stage.mouseY);
+				var localPosition:Point = canvas.globalToLocal(position);
+			
+				effectMove.end();	
+				effectMove.xTo = localPosition.x - (image.width / 2)
+				effectMove.yTo = localPosition.y - (image.height / 2)
+				effectMove.play();
+			}
+			
+		]]>
+	</mx:Script>
+	
+	<mx:Move id="effectMove" target="{image}" />
+	
+	<mx:Canvas id="canvas" width="100%" height="100%" mouseDown="moveImage(event)">
+	
+		<mx:Image id="image" source="@Embed('images/logo.png')"
+			x="24" y="24" width="48" height="48" 
+	 	/>
+	 	
+	</mx:Canvas>
+	 
+</mx:Panel>

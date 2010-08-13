@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<!--
+	演示 放大/缩小 的动画效果
+-->
+
+<mx:Panel xmlns:mx="http://www.adobe.com/2006/mxml" layout="absolute" width="400" height="300"
+    title="Effect - Zoom (放大/缩小)">
+
+	<mx:Script>
+		<![CDATA[
+			
+			private function doZoom(e:MouseEvent):void
+			{
+				if (zoom.isPlaying)
+				{
+					zoom.reverse();
+				}
+				else
+				{
+					zoom.play([e.target], e.type == MouseEvent.ROLL_OUT ? true : false);
+				}
+			}		
+			
+		]]>
+	</mx:Script>
+		
+	<mx:Zoom id="zoom" originX="24" originY="24" 
+		zoomWidthFrom="1" zoomWidthTo="2" zoomHeightFrom="1" zoomHeightTo="2" />
+	
+	<mx:Image source="@Embed('images/logo.png')"
+		x="24" y="24" width="48" height="48" 
+		scaleX="1" scaleY="1" 
+		rollOver="doZoom(event)" rollOut="doZoom(event)"
+	 />
+	
+</mx:Panel>

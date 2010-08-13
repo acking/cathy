@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<!--
+	应用 Email 验证控件的 Demo
+
+-->
+<mx:Panel xmlns:mx="http://www.adobe.com/2006/mxml" layout="absolute" width="400" height="300"
+	title="Validator - EmailValidator (Email验证)">
+	
+	<mx:EmailValidator id="emailValidator" source="{txtEmail}" property="text"
+	    missingAtSignError="缺少@" 
+       	valid="mx.controls.Alert.show('验证成功');"
+    />
+       
+	<mx:Form>
+        <mx:FormItem label="Email: ">
+            <mx:TextInput id="txtEmail"/>
+        </mx:FormItem>
+        <mx:FormItem >
+            <mx:Button id="btnSubmit" label="验证" click="emailValidator.validate();" />
+        </mx:FormItem>
+    </mx:Form>
+    
+</mx:Panel>

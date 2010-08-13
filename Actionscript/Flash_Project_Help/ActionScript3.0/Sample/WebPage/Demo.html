@@ -1,0 +1,64 @@
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="zh_cn" lang="zh_cn">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312" />
+<title>Demo</title>
+<script language="javascript">AC_FL_RunContent = 0;</script>
+<script src="AC_RunActiveContent.js" language="javascript"></script>
+</head>
+<body bgcolor="#ffffff">
+
+<script type="text/javascript">
+
+	Request = {
+		// 根据指定的名称取 url 参数值
+		QueryString : function(name){
+		   var svalue = location.search.match(new RegExp("[\?\&]" + name + "=([^\&]*)(\&?)","i"));
+		   return svalue ? svalue[1] : svalue;
+		},
+		
+		// 取 url 参数字符串
+		Query : function(){
+		   var svalue = location.search.match(new RegExp("[\?](.*)","i"));
+		   return svalue ? svalue[1] : svalue;
+		}
+	}
+	
+	// 根据指定的名称取 url 参数值
+	alert(Request.QueryString("param"));
+	
+	// 取 url 参数字符串
+	alert(Request.Query());
+	
+</script>
+
+<script type="text/javascript">
+
+	// ActionScript 调用 JavaScript 时，JavaScript 端的函数
+	function jsMethod(p1, p2)
+	{
+		alert("参数1：" + p1 + " 参数2：" + p2);
+	}
+
+	// JavaScript 调用 ActionScript
+	window.onload = function()
+	{
+		var swfObj = document.getElementById('Demo');   
+    
+		// asMethod 为 ActionScript 端注册的可被 JavaScript 调用的函数
+		swfObj.asMethod("param1", "param2");
+	}
+	
+</script>
+
+<object classid="clsid:d27cdb6e-ae6d-11cf-96b8-444553540000" codebase="http://download.macromedia.com/pub/shockwave/cabs/flash/swflash.cab#version=9,0,0,0" width="550" height="400" id="Demo" align="middle">
+	<param name="allowScriptAccess" value="sameDomain" />
+	<param name="allowFullScreen" value="false" />
+	<param name="movie" value="Demo.swf?dateOfBirth=1980-02-14" />
+	<param name="quality" value="high" />
+	<param name="bgcolor" value="#ffffff" />	
+	<embed src="Demo.swf" quality="high" bgcolor="#ffffff" width="550" height="400" name="Demo" align="middle" allowScriptAccess="sameDomain" allowFullScreen="false" type="application/x-shockwave-flash" pluginspage="http://www.macromedia.com/go/getflashplayer" />
+	<param name="flashVars" value="name=webabcd&age=29" />
+</object>
+
+</body>
+</html>

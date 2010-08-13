@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<!--
+	对各种 effect 做串行展示
+-->
+
+<mx:Panel xmlns:mx="http://www.adobe.com/2006/mxml" layout="vertical" horizontalAlign="center" width="400" height="300"
+	title="Effect - Sequence (效果串行), AnimateProperty, Pause">
+	
+	<mx:Label text="顺便说明 AnimateProperty, Pause"/>
+	
+	<mx:Sequence id="sequence">
+	 	<mx:AnimateProperty property="scaleX" fromValue="1" toValue="3" duration="300" />
+	 	<mx:Pause duration="2000"/>
+        <mx:AnimateProperty property="scaleX" fromValue="3" toValue="1" duration="1000" />  
+    </mx:Sequence>
+    
+	<mx:Image source="@Embed('images/logo.png')"
+		width="48" height="48"
+	    scaleX="1" scaleY="1"
+	    mouseDownEffect="{sequence}"
+	 />
+	 
+</mx:Panel>

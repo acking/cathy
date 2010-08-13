@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<!--
+	用 AS3 封装好的常用加密算法。详情 http://crypto.hurlant.com
+	以下以 3DES 加密/解密为例
+-->
+
+<mx:Panel xmlns:mx="http://www.adobe.com/2006/mxml" layout="absolute"
+	title="3DES - ECB 加密解密算法 Demo" width="424" height="382">
+
+	<mx:Script>
+		<![CDATA[
+			
+			import com.hurlant.crypto.symmetric.ICipher;
+			import com.hurlant.crypto.symmetric.PKCS5;
+			import com.hurlant.crypto.symmetric.IPad;
+			import com.hurlant.util.Base64;
+			import com.hurlant.util.Hex;
+			import com.hurlant.crypto.Crypto;
+			
+			private function encryptHandler():void 
+			{
+				var key:String = txtKey.text;
+				var keyData:ByteArray = Hex.toArray(Hex.fromString(key));
+
+				var plain:String = txtPlainText.text;
+				var plainData:ByteArray = Hex.toArray(Hex.fromString(plain));
+				
+				var name:String = "des3-ecb";
+							
+				var pad:IPad = new PKCS5;
+				var mode:ICipher = Crypto.getCipher(name, keyData, pad);
+				pad.setBlockSize(mode.getBlockSize());
+				mode.encrypt(plainData);
+				
+				var result:String = Base64.encodeByteArray(plainData);
+				txtCipherText.text = result;
+			}
+			
+			private function decryptHandler():void 
+			{
+				var key:String = txtKey.text;
+				var keyData:ByteArray = Hex.toArray(Hex.fromString(key));
+
+				var cipher:String = txtCipherText.text;
+				var cipherData:ByteArray = Base64.decodeToByteArray(cipher);;
+				
+				var name:String = "des3-ecb";
+							
+				var pad:IPad = new PKCS5;
+				var mode:ICipher = Crypto.getCipher(name, keyData, pad);
+				pad.setBlockSize(mode.getBlockSize());
+				mode.decrypt(cipherData);
+				
+				var result:String = Hex.toString(Hex.fromArray(cipherData));
+				txtPlainText.text = result;
+			}
+			
+		]]>
+	</mx:Script>
+
+	<mx:Label text="加密结果以 Base64 编码输出" x="10" y="10"/>
+	<mx:Button x="286" y="184" label="加密" id="btnEncrypt" click="encryptHandler()"/>
+	<mx:Button x="342" y="184" label="解密" id="btnDecrypt" click="decryptHandler()"/>
+	<mx:TextInput x="53" y="34" width="337" id="txtKey" text="#s^un2ye31&lt;cn%|aoXpR,+vh"/>
+	<mx:Label x="10" y="36" text="密钥:"/>
+	<mx:TextInput x="10" y="88" width="380" height="88" id="txtPlainText"/>
+	<mx:TextInput x="10" y="240" width="380" height="88" id="txtCipherText"/>
+	<mx:Label x="10" y="62" text="原文: "/>
+	<mx:Label x="10" y="214" text="密文: "/>
+	
+</mx:Panel>

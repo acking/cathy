@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<!--
+	演示各种缓动（easing）的 Demo
+	和 Silverlight 中的缓动一致 http://www.cnblogs.com/webabcd/archive/2009/08/20/1550334.html
+-->
+
+<mx:Panel xmlns:mx="http://www.adobe.com/2006/mxml" layout="absolute" width="400" height="300"
+	title="easing 的应用(TweenEffect 的 easingFunction 属性)">
+	
+	<mx:Script>
+		<![CDATA[
+		
+			import mx.events.TweenEvent;
+			
+			import mx.effects.easing.Back;
+			import mx.effects.easing.Bounce;
+			import mx.effects.easing.Circular;
+			import mx.effects.easing.Cubic;
+			import mx.effects.easing.Elastic;
+			import mx.effects.easing.Exponential;
+			import mx.effects.easing.Linear;
+			import mx.effects.easing.Quadratic;
+			import mx.effects.easing.Quartic;
+			import mx.effects.easing.Quintic;
+			import mx.effects.easing.Sine;
+			
+			private function moveImage(e:MouseEvent):void
+			{
+				effectMove.end();	
+				effectMove.xTo = 240;
+				effectMove.yTo = 120;
+				effectMove.play();
+			}
+			
+			private function radioChangeHandler():void
+			{
+				switch (radioGroup.selectedValue)
+				{
+					case "Back" :
+            			effectMove.easingFunction = Back.easeOut;
+                    	break;
+                    case "Bounce" :
+                    	effectMove.easingFunction = Bounce.easeOut;
+                    	break;
+                    case "Circular" :
+                    	effectMove.easingFunction = Circular.easeOut;
+                    	break;
+                    case "Cubic" :
+                    	effectMove.easingFunction = Cubic.easeOut;
+                    	break;
+                    case "Elastic" :
+                    	effectMove.easingFunction = Elastic.easeOut;
+                    	break;
+                    case "Exponential" :
+                    	effectMove.easingFunction = Exponential.easeOut;
+                    	break;
+                    case "Linear" :
+                    	effectMove.easingFunction = Linear.easeOut;
+                    	break;
+                    case "Quadratic" :
+                    	effectMove.easingFunction = Quadratic.easeOut;
+                    	break;
+                    case "Quartic" :
+                    	effectMove.easingFunction = Quartic.easeOut;
+                    	break;
+                   	case "Quintic" :
+                    	effectMove.easingFunction = Quintic.easeOut;
+                    	break;
+                    case "Sine" :
+                    	effectMove.easingFunction = Sine.easeOut;
+                    	break;
+                    default :
+                    	break;
+				}
+			}
+			
+			private function effectEndHandler():void
+			{
+				image.x = 24;
+				image.y = 24;
+			}
+			
+		]]>
+	</mx:Script>
+	
+	<mx:Move id="effectMove" target="{image}" duration="5000"
+		easingFunction="{Bounce.easeOut}" 
+		effectEnd="effectEndHandler();" />
+	
+	<mx:Canvas id="canvas" width="100%" height="100%">
+		<mx:Image id="image" source="@Embed('images/logo.png')"
+			x="24" y="24" width="48" height="48" />
+		<mx:Button id="btnMove" label="移动" click="moveImage(event)" x="10" y="80"/>
+		
+		<mx:RadioButtonGroup id="radioGroup" change="radioChangeHandler();"/>
+		<mx:RadioButton x="10" y="140" label="Back" groupName="radioGroup"/>
+		<mx:RadioButton x="97" y="140" label="Bounce" groupName="radioGroup" selected="true"/>
+		<mx:RadioButton x="199" y="140" label="Circular" groupName="radioGroup"/>
+		<mx:RadioButton x="294" y="140" label="Cubic" groupName="radioGroup"/>
+		<mx:RadioButton x="10" y="170" label="Elastic" groupName="radioGroup"/>
+		<mx:RadioButton x="199" y="200" label="Exponential" groupName="radioGroup"/>
+		<mx:RadioButton x="10" y="200" label="Linear" groupName="radioGroup"/>
+		<mx:RadioButton x="97" y="200" label="Quadratic" groupName="radioGroup"/>
+		<mx:RadioButton x="294" y="170" label="Quartic" groupName="radioGroup"/>
+		<mx:RadioButton x="199" y="170" label="Quintic" groupName="radioGroup"/>
+		<mx:RadioButton x="97" y="170" label="Sine" groupName="radioGroup"/>
+	</mx:Canvas>
+	
+</mx:Panel>

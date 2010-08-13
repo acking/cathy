@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<mx:Panel xmlns:mx="http://www.adobe.com/2006/mxml" layout="absolute" width="400" height="300"
+	title="State Transition (状态过渡的应用)">
+	
+	<mx:Script>
+		<![CDATA[
+			
+			import mx.effects.easing.Bounce;
+			
+		]]>
+	</mx:Script>
+	
+	<!--
+		<mx:Transition /> - 用于设置状态转换间的过渡效果
+	-->
+	<mx:transitions>
+    	<mx:Transition>
+        	<mx:Parallel targets="{[panel, toogleTo1, toogleTo2, formItem]}">
+            	<mx:Resize duration="500" easingFunction="Bounce.easeOut"/>
+                <mx:Sequence target="{formItem}">
+                	<mx:Blur duration="200" blurYFrom="1.0" blurYTo="20.0"/>
+                	<mx:Blur duration="200" blurYFrom="20.0" blurYTo="1"/>
+             	</mx:Sequence>
+        	</mx:Parallel>
+    	</mx:Transition>
+    </mx:transitions>
+	
+	<!--
+		以下关于状态转换的部分参见 State.mxml
+	-->
+	<mx:states>
+        <mx:State name="state2">           
+            <mx:AddChild relativeTo="{form}" position="lastChild">
+                <mx:FormItem id="formItem" label="Label2:">
+                    <mx:TextInput/>
+                </mx:FormItem>
+            </mx:AddChild>
+            
+            <mx:SetProperty target="{panel}" name="title" value="状态2"/>
+   
+            <mx:RemoveChild target="{toogleTo2}"/>
+                      
+            <mx:AddChild relativeTo="{bar}" position="firstChild">
+                <mx:LinkButton id="toogleTo1" label="转换到状态1" click="this.currentState=''"/>
+            </mx:AddChild>
+        </mx:State>
+    </mx:states>
+
+    <mx:Panel id="panel" title="状态1">
+        
+        <mx:Form id="form">
+            <mx:FormItem label="Label1:">
+                <mx:TextInput/>
+            </mx:FormItem>
+        </mx:Form>
+        
+        <mx:ControlBar id="bar">                   
+            <mx:LinkButton id="toogleTo2" label="转换到状态2" click="this.currentState='state2'" />
+        </mx:ControlBar>
+    </mx:Panel>
+    
+</mx:Panel>

@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<!--
+	实现自定义 easing 的 Demo
+-->
+
+<mx:Panel xmlns:mx="http://www.adobe.com/2006/mxml" layout="absolute" width="400" height="300"
+	title="自定义 easing">
+
+	 <mx:Script>
+        <![CDATA[
+        
+        	/**
+		     *  @param t 当前时间，介于 0 - 持续时间 之间
+		     *  @param b 动画属性的初始值
+		     *  @param c 动画属性的总计变化值
+		     *  @param d 运动的持续时间
+		     */
+            private function myEasingFunction(t:Number, b:Number, c:Number, d:Number):Number 
+            {
+            	if ((t /= d) < (1 / 2.75)) 
+            	{
+            		return c * (7.5625 * t * t) + b;
+              	}
+              	else if (t < (2 / 2.75)) 
+              	{
+                	return c * (7.5625 * (t-=(1.5/2.75)) * t + .75) + b;
+              	}
+              	else if (t < (2.5 / 2.75)) 
+              	{
+                	return c * (7.5625 * (t-=(2.25/2.75)) * t + .9375) + b;
+              	}
+              	else 
+              	{
+              		return c * (7.5625 * (t-=(2.625/2.75)) * t + .984375) + b;
+              	}
+            };
+            
+            private function moveImage(e:MouseEvent):void
+			{
+				var position:Point = new Point(stage.mouseX, stage.mouseY);
+				var localPosition:Point = canvas.globalToLocal(position);
+			
+				effectMove.end();	
+				effectMove.xTo = localPosition.x - (image.width / 2)
+				effectMove.yTo = localPosition.y - (image.height / 2)
+				effectMove.play();
+			}
+        ]]>
+    </mx:Script>
+
+	<mx:Move id="effectMove" target="{image}" easingFunction="myEasingFunction" />
+	
+	<mx:Canvas id="canvas" width="100%" height="100%" mouseDown="moveImage(event)">
+	
+		<mx:Image id="image" source="@Embed('images/logo.png')"
+			x="24" y="24" width="48" height="48" 
+	 	/>
+	 	
+	</mx:Canvas>
+		
+</mx:Panel>

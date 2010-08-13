@@ -1,0 +1,16 @@
+/* 
+ * Flex 也支持 CSS 中的类型选择符
+ * 此种类型选择符必须设置在外部，然后由具体的 mxml 引用，直接将其写在 <mx:Style /> 中无效
+ */
+Application, .errorTip
+{
+	font-size: 12px;
+}
+
+ToolTip 
+{
+    fontSize: 12;
+    fontStyle: "italic";
+    color: #000000;
+    backgroundColor: #FCEA1E;
+}

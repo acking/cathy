@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<mx:Panel xmlns:mx="http://www.adobe.com/2006/mxml" layout="absolute" width="400" height="300"
+	initialize="init();"
+	title="CSS 的应用">
+	
+	<mx:Script>
+		<![CDATA[
+	
+			// 重写已声明的样式
+			// 其中样式 “italic” 已在 <mx:Style /> 中做了声明
+			private function init():void
+			{
+				var css:CSSStyleDeclaration = StyleManager.getStyleDeclaration(".italic");
+				css.setStyle("fontStyle", "italic");
+			}
+			
+			// 以编程方式指定样式
+			private function setTextInputStyle():void
+			{
+				txt.setStyle("color", "Red");
+			}
+			
+		]]>
+	</mx:Script>
+	
+	<mx:Style>
+		/* 在 Flex 中的做样式设置，基本与 CSS 相同 */
+		
+		.red 
+		{ 
+            color: red;
+    	}
+    	.bold
+    	{
+    		font-weight: bold;
+    	}
+    	.italic
+    	{
+    		
+    	}
+    	
+    	.myClass
+    	{
+    		/* 使用内嵌图片做背景 */
+    		background-image:Embed("images/logo.png");
+    	}
+	</mx:Style>	   
+	
+	<!--以声明方式指定样式（可以一次指定多个样式）-->
+	<mx:Label text="Label" x="10" y="10" styleName="red bold italic" />
+	
+	<!--以编程方式指定样式-->
+  	<mx:TextInput id="txt" text="TextInput" x="10" y="36" initialize="setTextInputStyle();" />
+
+	<mx:VBox styleName="myClass" x="10" y="85">
+		<mx:Label text="Label" color="yellow" fontSize="30" />
+	</mx:VBox>   
+  
+</mx:Panel>

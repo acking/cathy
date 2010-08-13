@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<!--
+	演示 对控件做alpha修改 的动画效果
+-->
+
+<mx:Panel xmlns:mx="http://www.adobe.com/2006/mxml" layout="absolute" width="400" height="300"
+	title="Effect - Dissolve (溶解, 变换 alpha 的效果)">
+	
+	<mx:Dissolve id="dissolveOut" duration="1000" alphaFrom="1" alphaTo="0" />
+	<mx:Dissolve id="dissolveIn" duration="1000" alphaFrom="0" alphaTo="1" />
+	
+	<mx:Image source="@Embed('images/logo.png')"
+		x="24" y="24" width="48" height="48"  
+	    visible="{chk.selected}" hideEffect="{dissolveOut}" showEffect="{dissolveIn}"
+	 />
+	 
+	 <mx:ControlBar horizontalAlign="center">
+	 	<mx:CheckBox id="chk" label="显示" selected="true" 
+	 		textRollOverColor="blue"
+	 	    textSelectedColor="red"
+	 	/>
+	 </mx:ControlBar>
+	 
+</mx:Panel>

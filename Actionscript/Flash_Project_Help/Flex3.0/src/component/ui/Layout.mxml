@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="utf-8"?>
+<mx:Panel xmlns:mx="http://www.adobe.com/2006/mxml" layout="absolute" 
+	title="Layout 常用布局控件一览" width="476" height="427">
+    
+    <mx:Script>
+    	<![CDATA[
+    	
+    		import mx.controls.Alert;
+    		
+    		private function submitForm(e:MouseEvent):void
+    		{
+    			Alert.show("Item1: " + item1.text, "Alert框");
+    		}
+    		
+    	]]>
+    </mx:Script>
+    
+    <!--
+    	HBox - 水平线性布局
+    	VBox - 垂直线性布局
+    -->
+	<mx:HBox x="10" y="10" width="438" horizontalGap="50" borderThickness="1" borderStyle="solid">
+		<mx:Label text="HBox - Label1"/>
+		<mx:Label text="HBox - Label2"/>
+	</mx:HBox>
+	
+	<!--
+		HDividedBox - 在 HBox 的基础上，以垂直方向显示分隔条
+		VDividedBox - 在 VBox 的基础上，以水平方向显示分隔条
+	-->
+	<mx:HDividedBox x="10" y="36" width="438" borderThickness="1" borderStyle="solid">
+		<mx:Label text="HDividedBox - Label1"/>
+		<mx:Label text="HDividedBox - Label2"/>
+	</mx:HDividedBox>
+	
+	<!--
+		Panel - 面板。可设置其标题，内容等
+	-->
+	<mx:Panel width="171" height="97" layout="absolute" title="Panel - Title" x="10" y="64" borderThickness="1" borderStyle="solid">
+		<mx:Label text="Panel - Label1"/>
+	</mx:Panel>
+	
+	<!--
+		Grid - 网格型布局控件
+	-->
+	<mx:Grid x="10" y="169" borderThickness="1" borderStyle="solid">
+		<mx:GridRow width="100%" height="100%">
+			<mx:GridItem width="100%" height="100%">
+				<mx:Label text="Grid - Label1"/>
+			</mx:GridItem>
+			<mx:GridItem width="100%" height="100%">
+				<mx:Label text="Grid - Label2"/>
+			</mx:GridItem>
+		</mx:GridRow>
+		<mx:GridRow width="100%" height="100%">
+			<mx:GridItem width="100%" height="100%" colSpan="2" horizontalAlign="center">
+				<mx:Label text="Grid - Label3"/>
+			</mx:GridItem>
+		</mx:GridRow>
+	</mx:Grid>
+	
+	<!--
+		Form - 用于构建表单型布局
+	-->
+	<mx:Form x="189" y="64" width="259" height="149" borderThickness="1" borderStyle="solid">
+		<mx:FormHeading label="Form - Head"/>
+		<mx:FormItem label="Item1: ">
+			<mx:TextInput id="item1" />	
+		</mx:FormItem>
+		<mx:FormItem>
+			<mx:HRule height="1" width="100%" />
+			<mx:Button label="Form - Submit" click="submitForm(event)" />
+		</mx:FormItem>
+	</mx:Form>
+	
+	<!--
+		Canvas - 绝对定位布局控件
+	-->
+	<mx:Canvas width="438" height="84" x="10" y="221" borderThickness="1" borderStyle="solid">
+		<mx:Label text="Canvas - Label1"/>
+		<mx:Label text="Canvas - Label2" x="104" y="10"/>
+		<mx:Label text="Canvas - Label3" x="208" y="20"/>
+	</mx:Canvas>
+	
+	<!--
+		ApplicationControlBar - 显示为一个条形控件
+	-->
+	<mx:ApplicationControlBar x="10" y="313" width="436">
+		<mx:Label text="ApplicationControlBar - Label1"/>
+	</mx:ApplicationControlBar>
+		
+	<!--
+		ControlBar - Panel 底部的条形控件
+		Spacer - 不用于显示，纯粹占位用
+	-->
+	<mx:ControlBar>
+		<mx:Label text="Panel - ControlBar - Label1"/>
+		<mx:Spacer width="100%" x="154" y="350"/>
+		<mx:Label text="Panel - ControlBar - Label2"/>
+	</mx:ControlBar>
+</mx:Panel>

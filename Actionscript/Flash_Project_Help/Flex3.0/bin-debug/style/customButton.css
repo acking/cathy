@@ -1,0 +1,4 @@
+Button.customButton
+{
+	upSkin: Embed(source="style/skin.swf", symbol="Button_upSkin");
+}

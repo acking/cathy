@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<!--
+	演示 TweenEffect （此类是大部分 effect 的基类） 
+-->
+
+<mx:Panel xmlns:mx="http://www.adobe.com/2006/mxml" layout="absolute" width="400" height="300"
+	title="TweenEffect 的介绍（它是部分 effect 的基类）">
+	
+	<mx:Script>
+		<![CDATA[
+		
+			import mx.events.TweenEvent;
+			
+			private function tweenStartHandler(e:TweenEvent):void
+			{
+				txtMsg.text += "补间效果开始\r";
+			}
+			
+			private function tweenEndHandler(e:TweenEvent):void
+			{
+				txtMsg.text += "补间效果结束\r";
+				lblUpdate.text = "宽度: " + image.width;
+			}
+			
+			private function tweenUpdateHandler(e:TweenEvent):void
+			{
+				lblUpdate.text = "宽度: " + image.width;
+			}
+			
+		]]>
+	</mx:Script>
+	
+	<mx:Resize id="resizeUp" target="{image}" widthTo="180" heightTo="180" duration="5000"
+	    tweenStart="tweenStartHandler(event)"
+	    tweenEnd="tweenEndHandler(event)"
+	    tweenUpdate="tweenUpdateHandler(event)"
+	/>
+	<mx:Resize id="resizeDown" target="{image}" widthTo="48" heightTo="48" />
+	
+	<mx:Image id="image" source="@Embed('images/logo.png')" 
+		x="24" y="24" width="48" height="48"
+	 />
+	<mx:Text x="264" y="36" width="106" height="178" id="txtMsg"/>
+	<mx:Label x="264" y="10" id="lblUpdate"/>
+	 
+	<mx:ControlBar horizontalAlign="center">
+		<mx:Button label="放大" click="resizeUp.end(); resizeUp.play();" />
+		<mx:Button label="缩小" click="resizeDown.end(); resizeDown.play();" />
+	</mx:ControlBar>
+
+</mx:Panel>

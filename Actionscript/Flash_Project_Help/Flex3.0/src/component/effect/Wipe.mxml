@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<!--
+	演示 从上/下/左/右 4 个方向 线性渐变地 对控件做 删除/显示 的动画效果
+-->
+
+<mx:Panel xmlns:mx="http://www.adobe.com/2006/mxml" layout="absolute" width="400" height="300"
+	title="Effect - WipeUp, WipeDown, WipeLeft, WipeRight (擦除)">
+	
+	<mx:Script>
+		<![CDATA[
+			
+			private function effectEndHandler():void
+			{
+				mx.controls.Alert.show("WipeLeft 效果结束");
+			}		
+			
+		]]>
+	</mx:Script>
+	
+	<mx:WipeLeft id="wipeLeft" duration="1000" effectEnd="effectEndHandler()" />
+	<mx:WipeUp id="wipeUp" duration="1000" />
+	
+	<mx:Image source="@Embed('images/logo.png')"
+		x="24" y="24" width="48" height="48"  
+	    visible="{chk.selected}" hideEffect="{wipeLeft}" showEffect="{wipeUp}"
+	 />
+	 
+	 <mx:ControlBar horizontalAlign="center">
+	 	<mx:CheckBox id="chk" label="显示" selected="true" 
+	 		textRollOverColor="blue"
+	 	    textSelectedColor="red"
+	 	/>
+	 </mx:ControlBar>
+	 
+</mx:Panel>

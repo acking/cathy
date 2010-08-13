@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<mx:Panel xmlns:mx="http://www.adobe.com/2006/mxml" layout="absolute" width="400" height="300"
+	title="ToolTip 的 Demo">
+	        
+    <mx:TextInput toolTip="我是 TookTip" x="10" y="10"/>
+    
+</mx:Panel>

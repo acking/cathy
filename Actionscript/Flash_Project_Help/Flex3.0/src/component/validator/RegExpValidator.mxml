@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<!--
+	应用正则表达式验证控件的 Demo
+-->
+
+<mx:Panel xmlns:mx="http://www.adobe.com/2006/mxml" layout="absolute" width="400" height="300"
+	title="Validator - RegExpValidator (正则表达式验证)">
+	
+	<mx:Script>
+		<![CDATA[
+		
+			import mx.events.ValidationResultEvent;
+			import mx.validators.*;
+			import mx.controls.Alert;
+			
+			private function handleResult(e:ValidationResultEvent):void
+			{
+				if (e.type == ValidationResultEvent.VALID)
+				{
+					Alert.show("验证成功");
+				}
+			}
+			
+		]]>
+	</mx:Script>
+	
+	<mx:RegExpValidator id="regExpValidator" 
+        source="{txtInput}" property="text" 
+        flags="g,i" expression="^[a-z]+$" 
+        valid="handleResult(event)" invalid="handleResult(event)"
+        trigger="{btnSubmit}" triggerEvent="click"
+        noMatchError="请输入正确的英文字母"
+        required="false"
+    />
+        
+	<mx:Form>
+        <mx:FormItem label="请输入英文字母: ">
+            <mx:TextInput id="txtInput"/>
+        </mx:FormItem>
+        <mx:FormItem >
+            <mx:Button id="btnSubmit" label="验证" />
+        </mx:FormItem>
+    </mx:Form>
+    
+</mx:Panel>

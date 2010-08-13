@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<mx:Panel xmlns:mx="http://www.adobe.com/2006/mxml" layout="absolute" width="400" height="300"
+	title="State (状态的应用)">
+
+    <mx:states>
+        <mx:State name="state2">           
+       		<!--
+       			<mx:AddChild /> - 在指定的关联控件的指定位置新增指定的控件
+	       			relativeTo - 关联的控件
+	       			position - 在关联控件的指定位置增加控件
+	       				关联控件为元素类型则此处可能的值为：before 或 after  
+	       				关联控件为集合类型则此处可能的值为：firstChild 或 lastChild
+	       		<mx:SetProperty /> - 设置指定控件的某属性的值
+	       		<mx:RemoveChild /> - 移除指定的控件
+       		-->
+            <mx:AddChild relativeTo="{form}" position="lastChild">
+                <mx:FormItem label="Label2:">
+                    <mx:TextInput/>
+                </mx:FormItem>
+            </mx:AddChild>
+            <mx:SetProperty target="{panel}" name="title" value="状态2"/>
+            <mx:RemoveChild target="{toggle}"/>
+                      
+            <mx:AddChild relativeTo="{bar}" position="firstChild">
+            	<!--
+        			设置状态为空，即转换到原始状态
+        		-->
+                <mx:LinkButton label="转换到状态1" click="this.currentState=''"/>
+            </mx:AddChild>
+        </mx:State>
+    </mx:states>
+
+	<!--
+		以下为 状态1 的 ui
+	-->
+    <mx:Panel id="panel" title="状态1">
+        
+        <mx:Form id="form">
+            <mx:FormItem label="Label1:">
+                <mx:TextInput/>
+            </mx:FormItem>
+        </mx:Form>
+        
+        <mx:ControlBar id="bar">                   
+        	<!--
+        		ui 状态转换到名为 state2 的 <mx:State />
+        	-->
+            <mx:LinkButton id="toggle" label="转换到状态2" click="this.currentState='state2'" />
+        </mx:ControlBar>
+    </mx:Panel>
+    
+</mx:Panel>

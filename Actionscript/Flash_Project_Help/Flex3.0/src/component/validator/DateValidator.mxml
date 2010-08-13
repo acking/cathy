@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<!--
+	应用日期验证控件的 Demo
+-->
+
+<mx:Panel xmlns:mx="http://www.adobe.com/2006/mxml" layout="absolute" width="400" height="300"
+	title="Validator - DateValidator (日期验证)">
+
+	<mx:DateValidator source="{txtDate}" property="text"
+		required="true" requiredFieldError="请输入日期" 
+		allowedFormatChars="-" inputFormat="YYYY-MM-DD" 
+        trigger="{btnSubmit}" triggerEvent="click" 
+        valid="mx.controls.Alert.show('验证成功');"
+        invalid="mx.controls.Alert.show('验证失败');" 
+        wrongDayError="日输入错误"
+        wrongMonthError="月输入错误"
+        wrongYearError="年输入错误"
+        wrongLengthError="日期长度错误"
+        invalidCharError="日期分隔符错误"
+        formatError="inputFormat 配置错误"
+    />
+        
+ 	<mx:Form>
+        <mx:FormItem label="日期(格式 yyyy-MM-dd): ">
+            <mx:TextInput id="txtDate"/>
+        </mx:FormItem>
+        <mx:FormItem >
+            <mx:Button id="btnSubmit" label="验证" />
+        </mx:FormItem>
+    </mx:Form>
+    
+</mx:Panel>

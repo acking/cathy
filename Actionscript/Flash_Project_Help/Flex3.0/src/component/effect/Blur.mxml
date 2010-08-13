@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<!--
+	演示 模糊 的动画效果
+-->
+
+<mx:Panel xmlns:mx="http://www.adobe.com/2006/mxml" layout="absolute" width="400" height="300"
+	title="Effect - Blur (模糊)">
+	
+	<mx:Blur id="blurImage" duration="1000"
+	    blurXFrom="0" blurXTo="10" blurYFrom="0" blurYTo="10"
+	/>
+	<mx:Blur id="unblurImage" duration="1000"
+	    blurXFrom="10" blurXTo="0" blurYFrom="10" blurYTo="0"
+	/>
+	
+	<mx:Image source="@Embed('images/logo.png')"
+		x="24" y="24" width="48" height="48"
+	    rollOverEffect="{blurImage}" rollOutEffect="{unblurImage}"
+	 />
+
+</mx:Panel>

@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="utf-8"?>
+<mx:Application xmlns:mx="http://www.adobe.com/2006/mxml" 
+	layout="absolute"
+	initialize="init()" 
+	xmlns:custom="component.*">
+	
+	<mx:Style source="style.css" />
+	
+	<mx:Script>
+		<![CDATA[
+		
+			import component.effect.*;
+			import component.validator.*;
+			import component.ui.*;	
+			import component.*;
+			
+			import flash.utils.getDefinitionByName;
+		
+			private function init():void
+			{
+				var customType0001:component.ui.Layout;
+				var customType0002:component.Encyption3DES;
+				var customType0003:component.effect.Zoom;
+				var customType0004:component.effect.Wipe;
+				var customType0005:component.effect.Rotate;
+				var customType0006:component.effect.Resize;
+				var customType0007:component.effect.Fade
+				var customType0008:component.effect.Move;
+				var customType0009:component.effect.Iris;
+				var customType0010:component.effect.Blur;
+				var customType0011:component.effect.Dissolve;
+				var customType0012:component.effect.Glow;
+				var customType0013:component.effect.Parallel;
+				var customType0014:component.effect.Sequence;
+				var customType0015:component.effect.SoundEffect;
+				var customType0016:component.validator.DateValidator;
+				var customType0017:component.validator.EmailValidator;
+				var customType0018:component.validator.RegExpValidator;
+				var customType0019:component.validator.Validator;
+				var customType0020:component.ui.Css;
+				var customType0021:component.ui.Skin;
+				var customType0022:component.ui.ToolTipDemo;
+				var customType0023:component.ui.Cursor;
+				var customType0024:component.ui.State;
+				var customType0025:component.ui.StateTransition;
+				var customType0026:component.effect.TweenEffect;
+				var customType0027:component.effect.Easing;
+				var customType0028:component.effect.CustomEasing;
+				var customType0029:component.Other;
+			}
+			
+			private function treeChanged(e:Event):void
+			{
+				var className:String = (Tree(e.target).selectedItem as XML).@value;
+				if (className == "")
+					return;
+				
+				container.removeAllChildren();
+						
+				var customClass:Class = getDefinitionByName(className) as Class;
+				var instance:Object = new customClass();
+				container.addChild(DisplayObject(instance));
+			}
+			
+		]]>
+	</mx:Script>
+	
+	<mx:XMLList id="treeData">
+		<node label="积少成多 Flash Flex">
+			<node label="Appearance">
+				<node label="Layout布局" value="component.ui.Layout" />
+				<node label="CSS的应用" value="component.ui.Css" />
+				<node label="Skin的应用" value="component.ui.Skin" />
+				<node label="ToolTip的Demo" value="component.ui.ToolTipDemo" />
+				<node label="State的应用" value="component.ui.State" />
+				<node label="State Transition的应用" value="component.ui.StateTransition" />
+				<node label="Cursor自定义鼠标指针" value="component.ui.Cursor" />
+			</node>
+			<node label="Validator">
+				<node label="DateValidator(日期验证)" value="component.validator.DateValidator" />
+				<node label="EmailValidator(Email验证)" value="component.validator.EmailValidator" />
+				<node label="RegExpValidator(正则表达式验证)" value="component.validator.RegExpValidator" />
+				<node label="Validator(其他验证器的基类)" value="component.validator.Validator" />
+			</node>
+			<node label="Effect">
+				<node label="Zoom(放大/缩小)" value="component.effect.Zoom" />
+				<node label="Wipe(擦除)" value="component.effect.Wipe" />
+				<node label="Rotate(旋转)" value="component.effect.Rotate" />
+				<node label="Resize(重设大小)" value="component.effect.Resize" />
+				<node label="Fade(淡入/淡出)" value="component.effect.Fade" />
+				<node label="Move(移动)" value="component.effect.Move" />
+				<node label="Iris(遮罩)" value="component.effect.Iris" />
+				<node label="Blur(模糊)" value="component.effect.Blur" />
+				<node label="Dissolve(溶解)" value="component.effect.Dissolve" />
+				<node label="Glow(发光)" value="component.effect.Glow" />
+				<node label="SoundEffect(音效)" value="component.effect.SoundEffect" />
+				<node label="Parallel(效果并行), AddItemAction, RemoveItemAction" value="component.effect.Parallel" />
+				<node label="Sequence(效果串行), AnimateProperty, Pause" value="component.effect.Sequence" />
+				<node label="基类TweenEffect的介绍" value="component.effect.TweenEffect" />
+				<node label="easing的应用" value="component.effect.Easing" />
+				<node label="自定义easing" value="component.effect.CustomEasing" />
+			</node>
+			<node label="3DES加密解密" value="component.Encyption3DES" />
+			<node label="其他" value="component.Other" />
+		</node>
+	</mx:XMLList>
+
+	<mx:Tree id="tree" x="10" y="10" width="200" height="100%"
+		dataProvider="{treeData}"
+		showRoot="false" 
+		labelField="@label"
+	    change="treeChanged(event)">
+	</mx:Tree>
+	
+	<mx:Canvas id="container" x="220" y="10" width="100%" height="100%" />
+	
+</mx:Application>

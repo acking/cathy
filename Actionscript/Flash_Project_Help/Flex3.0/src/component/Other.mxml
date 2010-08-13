@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<mx:VBox xmlns:mx="http://www.adobe.com/2006/mxml" width="400" height="300">
+	<mx:Label text="懒了，Flex 还有好多东西啊，不过暂时先到这里吧"/>
+	<mx:Label text="SoundEffect 用于播放声音"/>
+	<mx:Label text="VideoDisplay 用于播放视频"/>
+	<mx:Label text="调用 Flash 开发的 swc 组件时，一般将其放入 libs 目录内"/>
+	<mx:Label text="减小主 Flex 程序的大小，可以把子模块写成 Module（被编译成独立的 swf） ，然后在需要的时候加载"/>
+	<mx:Label text="编译 Flex 的两种方式：Merged into code；Runtime shared library (RSL)"/>
+</mx:VBox>

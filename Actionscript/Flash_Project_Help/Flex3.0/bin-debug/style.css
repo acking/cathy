@@ -1,0 +1,12 @@
+Application, .errorTip
+{
+	font-size: 12px;
+}
+
+ToolTip 
+{
+    fontSize: 12;
+    fontStyle: "italic";
+    color: #000000;
+    backgroundColor: #FCEA1E;
+}

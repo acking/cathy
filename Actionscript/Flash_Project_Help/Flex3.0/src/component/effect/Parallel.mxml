@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<!--
+	对各种 effect 做并行展示
+-->
+
+<mx:Panel xmlns:mx="http://www.adobe.com/2006/mxml" layout="absolute" width="400" height="300"
+	title="Effect - Parallel (效果并行), AddItemAction, RemoveItemAction">
+	
+	<mx:Script>
+		<![CDATA[
+		
+			import mx.collections.ArrayCollection;
+			
+			[Bindable]
+			private var dp:ArrayCollection = new ArrayCollection(["webabcd", "webabcd", "webabcd"])
+			
+			private function addItem():void
+			{
+				dp.addItemAt("webabcd", dp.length);
+			}
+			
+			private function removeItem():void
+			{
+				dp.removeItemAt(dp.length - 1);
+			}
+			
+		]]>
+	</mx:Script>
+	
+	<mx:Parallel id="parallel">
+		<mx:AddItemAction filter="addItem" startDelay="500" />
+		<mx:RemoveItemAction filter="removeItem" startDelay="500" />
+		<mx:Blur startDelay="500" duration="1000" blurXFrom="0" blurXTo="10" blurYFrom="0" blurYTo="10" filter="addItem" />
+	</mx:Parallel>
+	
+	<mx:Label text="顺便说明 AddItemAction, RemoveItemAction"  x="10" y="10"/>
+	
+	<mx:List id="list" dataProvider="{dp}" fontSize="16"  y="36" x="10" height="178" width="360"
+	    itemsChangeEffect="{parallel}"/>
+	 
+	 <mx:ControlBar horizontalAlign="center">
+	 	<mx:Button label="增加一项" click="addItem();" />
+	 	<mx:Button label="删除一项" click="removeItem();" />
+	 </mx:ControlBar>
+	 
+</mx:Panel>

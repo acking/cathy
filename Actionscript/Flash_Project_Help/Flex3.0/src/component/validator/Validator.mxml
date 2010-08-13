@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<!--
+	各种验证控件的基类 Validator 的 Demo，其可用于必填验证
+-->
+
+<mx:Panel xmlns:mx="http://www.adobe.com/2006/mxml" layout="absolute" width="400" height="300"
+	title="Validator - Validator (其他验证器的基类，可用于必填验证)">
+	
+	<mx:Validator id="validator" 
+        source="{txtInput}" property="text" 
+        required="true" requiredFieldError="请输入必填字段"
+        trigger="{btnSubmit}" triggerEvent="click"
+    />
+        
+	<mx:Form>
+        <mx:FormItem label="必填字段: ">
+            <mx:TextInput id="txtInput"/>
+        </mx:FormItem>
+        <mx:FormItem >
+            <mx:Button id="btnSubmit" label="验证" />
+        </mx:FormItem>
+    </mx:Form>
+    
+</mx:Panel>

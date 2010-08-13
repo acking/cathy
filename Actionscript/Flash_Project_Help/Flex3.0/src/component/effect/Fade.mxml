@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<!--
+	演示 淡入/淡出 的动画效果
+-->
+
+<mx:Panel xmlns:mx="http://www.adobe.com/2006/mxml" layout="absolute" width="400" height="300"
+	title="Effect - Fade (淡入/淡出)">
+	
+	<mx:Fade id="fadeOut" duration="1000" alphaFrom="1" alphaTo="0" />
+	<mx:Fade id="fadeIn" duration="1000" alphaFrom="0" alphaTo="1" />
+	
+	<mx:Image source="@Embed('images/logo.png')"
+		x="24" y="24" width="48" height="48"  
+	    visible="{chk.selected}" hideEffect="{fadeOut}" showEffect="{fadeIn}"
+	 />
+	 
+	 <mx:ControlBar horizontalAlign="center">
+	 	<mx:CheckBox id="chk" label="显示" selected="true" 
+	 		textRollOverColor="blue"
+	 	    textSelectedColor="red"
+	 	/>
+	 </mx:ControlBar>
+	 
+</mx:Panel>

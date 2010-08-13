@@ -1,0 +1,9 @@
+Button.customButton
+{
+	/*
+	 * 如果要在运行时加载 skin 需要将其编译为 swf（在 .css 文件中单击右键，选择 Compile CSS to SWF）
+	 * 自定义皮肤：在 Flash 中要选择为 ActionScript 导出，在 Flash 中编辑皮肤时，要启用9切片(放大/缩小时边缘不会变形，也就是说边缘不随放大/缩小而变化)
+	 * 此处指定的 style/skin.swf 为在 Flash 中编辑的皮肤
+	 */
+	upSkin: Embed(source="style/skin.swf", symbol="Button_upSkin");
+}

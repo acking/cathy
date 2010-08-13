@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<!--
+	演示 旋转 的动画效果
+-->
+
+<mx:Panel xmlns:mx="http://www.adobe.com/2006/mxml" layout="absolute" width="400" height="300"
+	title="Effect - Rotate (旋转)">
+	
+	<mx:Script>
+		<![CDATA[
+		
+			[Bindable]
+			private var angle:int = 0;
+			
+			private function rotateImage():void
+			{
+				rotate.end();
+				angle +=45;
+				rotate.play();
+			}
+			
+		]]>
+	</mx:Script>
+	
+	<mx:Rotate id="rotate" angleFrom="{angle-45}" angleTo="{angle}" target="{image}" duration="100" />
+	
+	<mx:Image id="image" source="@Embed('images/logo.png')" 
+		x="24" y="24" width="48" height="48"
+	 />
+	 
+	 <mx:ControlBar horizontalAlign="center">
+	 	<mx:Button label="旋转 45 度" click="rotateImage();" />
+	 </mx:ControlBar>
+	 
+</mx:Panel>

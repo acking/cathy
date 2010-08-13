@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<mx:Panel xmlns:mx="http://www.adobe.com/2006/mxml" layout="absolute" width="400" height="300"
+	title="Skin 的应用">
+	
+	<mx:Script> 
+		<![CDATA[
+		
+			// 应用自定义皮肤
+			private function changeSkin():void
+			{
+				StyleManager.loadStyleDeclarations("style/customButton.swf");
+				
+				btn.styleName = "customButton"
+			}
+			
+		]]>
+	</mx:Script>
+	
+	<mx:Style source="style/customButton.css" />
+	
+	<mx:Button id="btn" label="换皮" click="changeSkin();" />
+	
+</mx:Panel>
