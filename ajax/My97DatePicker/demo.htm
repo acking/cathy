@@ -23,6 +23,11 @@ WdatePicker({eCont:'div1',skin:'ext',onpicked:function(dp){
 <input type="text" id="d2" onFocus="WdatePicker({skin:'ext',startDate:'%y-%M-01 00:00:00',dateFmt:'yyyy-MM-dd HH:mm:ss',alwaysUseStartDate:true})"/>
 
 <input type="text" id="d3" value="默认皮肤" onFocus="WdatePicker({skin:'default',startDate:'%y-%M-01 00:00:00',dateFmt:'yyyy-MM-dd HH:mm:ss',alwaysUseStartDate:true})"/>
+
+<div style="margin-top:20px;">
+	开始时间：<input type="text" id="startTime" onFocus="WdatePicker({maxDate:'#F{$dp.$D(\'endTime\')||\'%y-%M-%d\'}', skin:'ext', dateFmt:'yyyy-MM-dd'})"/>
+	结束时间：<input type="text" id="endTime" onFocus="WdatePicker({skin:'ext',startDate:'%y-%M-%d', maxDate:'%y-%M-%d',dateFmt:'yyyy-MM-dd',alwaysUseStartDate:true})"/>
+</div>
 </body>
 </html>
 
