@@ -1,0 +1,32 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <title>谷歌浏览器崩溃的原因</title>
+  <meta name="generator" content="editplus" />
+  <meta name="author" content="" />
+  <meta name="keywords" content="" />
+  <meta name="description" content="" />
+  <meta http-equiv='content-type' content='text/html;charset=utf-8' />
+ </head>
+
+ <body>
+ <div id="iknowguidecontent"></div>
+<script type="text/javascript">
+	function G(id) {
+		return typeof id === 'string' ? document.getElementById(id) : id;
+	}
+	
+	var eggtype = "0";
+
+	G("iknowguidecontent").innerHTML='<object title="知道彩蛋" onmousedown="EggCallBack('+eggtype+')" classid="clsid:D27CDB6E-AE6D-11cf-96B8-444553540000" codebase="http://download.macromedia.com/pub/shockwave/cabs/flash/swflash.cab#version=9,0,28,0" width="150" height="150"><param name="movie" value="http://zhidao.baidu.com/flash/egg.swf" /><param name="quality" value="high" /><param name="wmode" value="transparent" /><embed src="http://zhidao.baidu.com/flash/egg.swf" width="150" height="150" quality="high" pluginspage="http://www.adobe.com/shockwave/download/download.cgi?P1_Prod_Version=ShockwaveFlash" type="application/x-shockwave-flash" wmode="transparent"></embed></object>';
+
+	function EggCallBack(A){
+		G("iknowguidecontent").innerHTML='<iframe src="http://www.baidu.com" width="420" height="360" frameborder="no" border="0" marginwidth="0" marginheight="0" scrolling="no"></iframe>';
+		G("iknowguidecontent").style.display = "none";
+		/*
+		nslog(location.href,101,{cmd:"eggclick",eggid:A});
+		if((""=="1")){Fe.hide("iknowguideegg");IknowEgg.done()}else{G("iknowguidecontent").innerHTML='<iframe src="/egg/'+A+'.html" width="420" height="360" frameborder="no" border="0" marginwidth="0" marginheight="0" scrolling="no"></iframe>'}*/
+	}
+</script>
+ </body>
+</html>
