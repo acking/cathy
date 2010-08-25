@@ -136,6 +136,21 @@
         var duration = document.getElementById('duration');
         var fps = document.getElementById('fps');
         var result = document.getElementById('result');
+		
+		type.options.length = 0;
+		/*
+		 * QQ邮箱使用的为Cubic + easeOut/easeIn 200ms(展开收起文件夹)
+		 * Sine + easeOut/easeIn 300ms 弹出框 from:-30 to 0
+		 * fast:200ms slow:600ms
+		 */
+		for (var i in Fx.transitions) {
+			if (Fx.transitions.hasOwnProperty(i)) {
+				var opt = document.createElement("option");
+					opt.value = i;
+					opt.innerHTML = i;
+				type.appendChild(opt);
+			}
+		}
         
 		function setPosition(el, position) {
             el.style.left = position[0] + 'px';

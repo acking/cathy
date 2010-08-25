@@ -386,9 +386,97 @@ Fx.parseColor = (function(){
  * 动画的算子函数
  */
 Fx.transitions = {
+	//linear
+	linearEase : function(t, b, c, d) {
+		return c*t/d + b;
+	},
 	simple : function(time, startValue, changeValue, duration) {
 		return changeValue * time / duration + startValue;
 	},
+	//circ
+	circEaseIn : function(t, b, c, d) {
+		return -c * (Math.sqrt(1 - (t/=d)*t) - 1) + b;
+	},
+	circEaseOut : function(t, b, c, d) {
+		return c * Math.sqrt(1 - (t=t/d-1)*t) + b;
+	},
+	circEaseInOut : function(t, b, c, d) {
+		if ((t/=d/2) < 1) {
+			return -c/2 * (Math.sqrt(1 - t*t) - 1) + b;
+		}
+
+		return c/2 * (Math.sqrt(1 - (t-=2)*t) + 1) + b;
+	},
+	//cubic
+	cubicEaseIn : function(t, b, c, d) {
+		return c*(t/=d)*t*t + b;
+	},
+	cubicEaseOut : function(t, b, c, d) {
+		return c*((t=t/d-1)*t*t + 1) + b;
+	},
+	cubicEaseInOut : function(t, b, c, d) {
+		if ((t/=d/2) < 1) {
+			return c/2*t*t*t + b;
+		}
+		return c/2*((t-=2)*t*t + 2) + b;
+	},
+	//expo
+	expoEaseIn : function(t, b, c, d) {
+		return (t==0) ? b : c * Math.pow(2, 10 * (t/d - 1)) + b;
+	},
+	expoEaseOut : function(t, b, c, d) {
+		return (t==d) ? b+c : c * (-Math.pow(2, -10 * t/d) + 1) + b;
+	},
+	expoEaseInOut : function(t, b, c, d) {
+		if (t==0) return b;
+		if (t==d) return b+c;
+		if ((t/=d/2) < 1) return c/2 * Math.pow(2, 10 * (t - 1)) + b;
+		return c/2 * (-Math.pow(2, -10 * --t) + 2) + b;
+	},	
+	//quad
+	quadEaseIn : function(t, b, c, d) {
+		return c*(t/=d)*t + b;
+	},
+	quadEaseOut : function(t, b, c, d) {
+		return -c *(t/=d)*(t-2) + b;
+	},
+	quadEaseInOut : function(t, b, c, d) {
+		if ((t/=d/2) < 1) return c/2*t*t + b;
+		return -c/2 * ((--t)*(t-2) - 1) + b;
+	},
+	//quart
+	quartEaseIn : function(t, b, c, d) {
+		return c*(t/=d)*t*t*t + b;
+	},
+	quartEaseOut : function(t, b, c, d) {
+		return -c * ((t=t/d-1)*t*t*t - 1) + b;
+	},
+	quartEaseInOut : function(t, b, c, d) {
+		if ((t/=d/2) < 1) return c/2*t*t*t*t + b;
+		return -c/2 * ((t-=2)*t*t*t - 2) + b;
+	},
+	//quint
+	quintEaseIn : function(t, b, c, d) {
+		return c*(t/=d)*t*t*t*t + b;
+	},
+	quintEaseOut : function(t, b, c, d) {
+		return c*((t=t/d-1)*t*t*t*t + 1) + b;
+	},
+	quintEaseInOut : function(t, b, c, d) {
+		if ((t/=d/2) < 1) return c/2*t*t*t*t*t + b;
+		return c/2*((t-=2)*t*t*t*t + 2) + b;
+	},
+	//sine
+	sineEaseIn : function(t, b, c, d) {
+		return -c * Math.cos(t/d * (Math.PI/2)) + c + b;
+	},
+	sineEaseOut : function(t, b, c, d) {
+		return c * Math.sin(t/d * (Math.PI/2)) + b;
+	},
+	sineEaseInOut : function(t, b, c, d) {
+		return -c/2 * (Math.cos(Math.PI*t/d) - 1) + b;
+	},
+	//regular
 	regularEaseIn : function(t, b, c, d) {
 		return c * (t /= d) * t + b;
 	},
@@ -401,6 +489,7 @@ Fx.transitions = {
 		}
 		return -c / 2 * ((--t) * (t - 2) - 1) + b;
 	},
+	//back
 	backEaseIn : function(t, b, c, d) {
 		var s = 1.70158;
 		return c * (t /= d) * t * ((s + 1) * t - s) + b;
@@ -418,7 +507,7 @@ Fx.transitions = {
 		}
 		return c / 2 * ((t -= 2) * t * (((s *= (1.525)) + 1) * t + s) + 2) + b;
 	},
-
+	//bounce
 	bounceEaseOut : function(t, b, c, d) {
 		if ((t /= d) < (1 / 2.75)) {
 			return c * (7.5625 * t * t) + b;
@@ -441,7 +530,7 @@ Fx.transitions = {
 		} else
 			return Fx.transitions.bounceEaseOut(t * 2 - d, 0, c, d) * 0.5 + c * 0.5 + b;
 	},
-
+	//strong
 	strongEaseIn : function(t, b, c, d) {
 		return c * (t /= d) * t * t * t * t + b;
 	},
@@ -455,6 +544,7 @@ Fx.transitions = {
 		}
 		return c / 2 * ((t -= 2) * t * t * t * t + 2) + b;
 	},
+	//elastic
 	elasticEaseIn : function(t, b, c, d, a, p) {
 		if (t == 0)
 			return b;
