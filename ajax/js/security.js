@@ -154,6 +154,97 @@ var TipManage = function() {
 		}
 	}
 }();
+/**
+ * 验证身份证输入
+ * 
+ * @param {String} _identity
+ */
+function validIdentity(_identity) {
+	var ReDate15 = /\d{6}(\d{6})\d{3}/;
+    var ReDate18 = /\d{6}(\d{8})\d{3}/;
+	
+    function _CheckSum(strID){
+        Re18Digital = /(\d{1})(\d{1})(\d{1})(\d{1})(\d{1})(\d{1})(\d{1})(\d{1})(\d{1})(\d{1})(\d{1})(\d{1})(\d{1})(\d{1})(\d{1})(\d{1})(\d{1})([0-9xX]{1})/;
+        Arr = Re18Digital.exec(strID);
+        var Wi = new Array(7, 9, 10, 5, 8, 4, 2, 1, 6, 3, 7, 9, 10, 5, 8, 4, 2);
+        Sum = 0;
+        for (i = 0; i <= 16; i++) 
+            Sum += Arr[i + 1] * Wi[i];
+        ArrCheckSum = new Array('1', '0', 'X', '9', '8', '7', '6', '5', '4', '3', '2');
+        strCheckSum = ArrCheckSum[Sum % 11];
+        if (strCheckSum == Arr[18].toUpperCase()) 
+            return true;
+        else 
+            return false;
+    }
+	
+    function _CheckDate(strDate, DateFrom, DateTo){
+        ReDigital8 = /\d{8}/;
+        ReAutoDate = /\d{4}-{1}\d{1,2}-\d{1,2}/;
+        if (strDate.indexOf("-") > -1) {
+            if (ReAutoDate.test(strDate) == false) 
+                return false;
+            Arr = strDate.split("-");
+            strDate = (Arr[0]) + "" + (Arr[1].length < 2 ? "0" : "") + Arr[1] + (Arr[2].length < 2 ? "0" : "") + (Arr[2]);
+        }
+        if (strDate.length != 8) 
+            return false;
+        if (ReDigital8.test(strDate) == false) 
+            return false;
+        MyDate = eval(strDate.replace(/^(\d{4})(\d{2})(\d{2})$/, "new Date($1,$2-1,$3)"));
+        strMyDate = MyDate.getFullYear() + (MyDate.getMonth() < 9 ? "0" : "") + (MyDate.getMonth() + 1) + "" + (MyDate.getDate() <= 9 ? "0" : "") + MyDate.getDate();
+        if (strMyDate != strDate) 
+            return false;
+        if (MyDate >= DateFrom && MyDate <= DateTo) 
+            return true;
+        else 
+            return false;
+    }
+	
+    function _validIdentity(identity){
+        var ReDigital15 = /\d{15}/;
+        var ReDigital18 = /\d{17}[0-9xX]{1}/;
+        var strMsg1 = "身份证号码中包含非法字符，请重新输入";
+        var strMsg2 = "身份证位数不正确，请重新输入";
+        var strMsg3 = "身份证号码无效，请重新输入";
+        switch (identity.length) {
+            case 15:
+                if (identity == "111111111111111") {
+                    return strMsg3;
+                }
+                if (ReDigital15.test(identity) == false) {
+                    return strMsg1;
+                }
+                Arr = ReDate15.exec(identity);
+                strDate = "19" + Arr[1];
+                if (_CheckDate(strDate, new Date(1900, 0, 1), new Date(1999, 11, 31)) == false) {
+                    return strMsg3;
+                }
+                break;
+            case 18:
+                if (ReDigital18.test(identity) == false) {
+                    return strMsg1;
+                }
+                Arr = ReDate18.exec(identity);
+                strDate = Arr[1];
+                if (_CheckDate(strDate, new Date(1900, 0, 1), new Date()) == false) {
+                    return strMsg3;
+                }
+                if (_CheckSum(identity) == false) {
+                    return strMsg3;
+                }
+                break;
+            case 0:
+                break;
+            default:
+                return strMsg2;
+                break;
+        }
+        return true;
+    }
+	
+    return _validIdentity(_identity);
+}
 
 /**
  * 选择问题 1
@@ -167,7 +258,8 @@ var regConfig = {
 		1 : /^[\u4e00-\u9fa5]{1,}[　 ]/,
 		2 : /^([\u4e00-\u9fa5]{2,19}|[A-Za-z ]{3,38})$/,
 		3 : /^(\d{4})(\d{2})(\d{2})$/,
-		4 : /^([A-Za-z0-9_-]+@(\w+\.)+\w{2,3})$/
+		4 : /^([A-Za-z0-9_-]+@(\w+\.)+\w{2,3})$/,
+		5 : /^[\u4E00-\u9FA5]{2,10}$/
 	},
 	tips : [
 		'请填写2至16个阿拉伯数字',
