@@ -329,3 +329,134 @@ function modifyHandler_1(title, fn) {
 	}
 }
 modifyHandler_1._callback = null;
+
+
+/**
+ * 检测输入的密码强度
+ * @param {String} pwd 密码
+ * @param {String} uid 数字帐号
+ */
+function checkPwdSecurity(pwd, uid) {
+	
+	function consectiveStr(value) {
+        if (/^\d+$/.test(value)) {
+            var arr = str2Array(value);
+            if (48 == arr[0] && 57 == arr[1]) {
+                arr[0] = 58
+            }
+            if (48 == arr[arr.length - 1] && 57 == arr[arr.length - 2]) {
+                arr[arr.length - 1] = 58
+            }
+            return consectiveStr2(arr)
+        }
+        if (/^[A-Z]+$/.test(value) || /^[a-z]+$/.test(value)) {
+            return consectiveStr2(str2Array(value))
+        }
+        return false
+    }
+	
+	function consectiveStr2(arr){
+		//检测每两个值之间的差值规律
+		var diff = arr[1] - arr[0];
+		if (diff != 1 && diff != -1) {
+			return false;
+		}
+		
+		for (var i = 2, len = arr.length; i < len; i++) {
+			if (arr[i] - arr[i - 1] != diff) {
+				return false;
+			}
+		}
+		
+		return true;
+	}
+	
+	function str2Array(value) {
+		var arr = [];
+		for (var i = 0, len = value.length; i < len; ++i) {
+			arr.push(value.charCodeAt(i));
+		}
+		return arr;
+	}
+	
+	if (pwd.length == 0) {
+		return {
+			level : 0,
+			detail : 0
+		}
+	} else if (/ /.test(pwd)) {
+		return {
+			level : 0,
+			detail : 5
+		}
+	} else if (pwd.length < checkPwdConfig.min_len) {
+		return {
+			level : 0,
+			detail : 1
+		}
+	} else if (pwd.length > checkPwdConfig.max_len) {
+		return {
+			level : 0,
+			detail : 2
+		}
+	} else if (pwd == uid) {
+		return {
+			level : 0,
+			detail : 3
+		}
+	} else if (new RegExp("^\\d{1,"+checkPwdConfig.uin_len+"}$").test(pwd)) {
+		return {
+			level : 0,
+			detail : 4
+		}
+	} else if (/^(.)\1+$/.test(pwd)) {
+		return {
+			level : 0,
+			detail : 6
+		}
+	} else if (consectiveStr(pwd)) {
+		return {
+			level : 0,
+			detail : 7
+		}
+	} else {
+		var mode = 0,
+			type = 0,
+			charCode = null;
+			
+		for (var i = 0, len = pwd.length; i < len; ++i) {
+			charCode = pwd.charCodeAt(i);
+			if (charCode >= 48 && charCode <= 57) {//0~9
+				mode |= 1;
+			} else if (charCode >= 65 && charCode <= 90) {//A~Z
+				mode |= 2;
+			} else if (charCode >= 97 && charCode <= 122) {//a~z
+				mode |= 4;
+			} else {
+				mode |= 8;
+			}
+		}
+		
+		while (mode != 0) {
+			type++;
+			mode &= (mode - 1);
+		}
+		
+		if (type == 1) {
+			return {
+				level : 1,
+				detail : 0
+			}
+		} else if (type == 2) {
+			return {
+				level : 2,
+				detail : 0
+			}
+		} else {
+			return {
+				level : 3,
+				detail : 0
+			}
+		}
+	}
+}
