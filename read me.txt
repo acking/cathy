@@ -175,3 +175,17 @@ v\:image{behavior: url(#default#VML);width:300px; height:300px; display:inline-b
    </div>
 </div>
 这样的嵌套有点不好，主要原因是所有都使用了relative，而且使用left左移、右移来处理，感觉非常影响性能，不太建议使用
+
+
+
+
+Tomcat配置：
+conf下新建“Catalina”文件夹 --> “localhost”--> ROOT.xml
+
+<Context path="" debug="0" docBase="" crossContext="true" reloadable="true"/>
+
+其中path必须为空，需要配置path的，则需要重新新建一份xml配置
+cms.xml
+<Context path="/cms" debug="0" docBase="" crossContext="true" reloadable="true"/>
+其中cms必须与文件名cms同名（区分大小写）
+
