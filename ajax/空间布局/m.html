@@ -1,0 +1,38 @@
+<!doctype html>
+<html>
+<head>
+	<title>textbox</title>
+	<meta name="description" content="textbox" />
+	<meta name="keywords" content="textbox" />
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+	<link href="reset.css" rel="stylesheet" />
+	<link href="main.css" rel="stylesheet" />
+</head><body>
+<div class="w950 layout">
+	<div id="header">header</div>
+	<div id="container" class="layout mode-col-221">
+		<div id="frame-col-0" class="frames col-l clear-fix"><div id="module_0" class="module">let me try</div></div>
+		<div id="frame-col-1" class="frames col-m"><div id="module_1" class="module"></div><div id="module_2" class="module">鼠标放上来拖啊，让我们大家一起拖啊拖啊拖</div></div>
+		<div id="frame-col-2" class="frames col-r clear-fix"><div id="module_3" class="module">let me try textbox</div><div id="module_4" class="module">let me try</div></div>
+	</div>
+	
+	<div id="containerAbsolute">
+    		 <div id="moudle" class="bg-mode">
+    		    fsdfsdf
+    		 </div>
+    		 <div id="moudle1" class="bg-mode">
+    		    fsdfsdf
+    		 </div>
+	</div>
+	
+	<div id="footer">footer</div>
+</div>
+<script src="Millet.js"></script>
+<script>
+M.ready(function(){
+    M.dd.initDrag(".module", true);
+    M.dd.initDrag("#moudle", true);
+    M.dd.initDrag("#moudle1", true);	
+});
+</script>
+</body></html>
